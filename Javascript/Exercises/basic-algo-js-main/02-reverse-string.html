@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        let string = window.prompt("Veuillez entrer un mot ou une phrase !");
+
+        while(typeof(string) !== "string"){
+
+            string = window.prompt("Veuillez entrer un mot ou une phrase !");
+
+        }
+
+        let charAtPosition;
+        let revertedString = "";
+
+        for(let i = string.length; i > 0; i--){
+
+            charAtPosition = string.charAt(i);
+
+            revertedString.concat(charAtPosition);
+
+        }
+
+        if(string.includes(" ")){
+
+            document.write("Votre expression est: " + string + "<br>");
+
+        } else{
+
+            document.write("Votre mot est: " + string + "<br>");
+
+        }
+
+        document.write("Voici son inverse: " + revertedString);
+    </script>
+</body>
+</html>
