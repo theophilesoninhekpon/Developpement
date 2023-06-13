@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function frankenSplice(arr1, arr2, n){
+
+            let resultArr = [];
+
+            for (let i = 0; i < arr2.length; i++){
+
+                 resultArr.push(arr2[i]);
+
+                 if( i === n - 1 ){
+
+                    for (let j = 0; j < arr1.length; j++){
+
+                        resultArr.push(arr1[j]);
+
+                    }
+                 }
+            }
+            
+            return resultArr;
+        }
+
+        console.log(frankenSplice(["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2));
+
+            // let arr1Str = arr1.join("");
+            // let arr2Str = arr2.join("");
+    
+            // let str = arr2Str.substr(0, n).concat(arr1Str, arr2Str.substr(n+1, arr2Str.length))
+
+            // let resultArray = str.split("");
+            // let result = [];
+
+            // for (let i = 0; i < resultArray.length; i++){
+                
+            //     if(isNaN(parseInt(resultArray[i]))){
+
+            //         result.push(resultArray[i])
+            //     }
+
+            //     result.push(parseInt(resultArray[i]));
+
+            // }
+
+            // return result;
+    </script>
+
+</body>
+
+</html>
+

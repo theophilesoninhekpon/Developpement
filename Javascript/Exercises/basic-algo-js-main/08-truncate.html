@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function truncateString(str, num){
+            
+            if(str.length > num){
+
+                truncatedStr = str.substr(0, num);
+
+                str = truncatedStr.concat("...");
+
+            } else{
+
+                str = str;
+
+            }
+
+            return str;
+        }
+
+        console.log(truncateString(truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length)))
+    </script>
+</body>
+</html>
