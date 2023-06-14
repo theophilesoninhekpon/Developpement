@@ -12,27 +12,59 @@
 
         function frankenSplice(arr1, arr2, n){
 
-            let resultArr = [];
+            for (let i = 0; i < arr2.length || i === 0; i++){
 
-            for (let i = 0; i < arr2.length; i++){
+                 if( i === n){
+                    
+                    let restOfElementsOfArr2 = [];
 
-                 resultArr.push(arr2[i]);
+                    for ( let k = n; k < arr2.length; k++){
 
-                 if( i === n - 1 ){
+                        restOfElementsOfArr2.push(arr2[k]);
+
+                    }
+
+                    console.log("t: " + restOfElementsOfArr2)
+
+                    let p = i;
 
                     for (let j = 0; j < arr1.length; j++){
 
-                        resultArr.push(arr1[j]);
+                        arr2[p] = arr1[j];
 
+                        ++p;
+                    }
+
+                    console.log(arr2);
+
+                    let m = 0;
+
+                    for (let l = n + arr1.length ; l < n + arr1.length + restOfElementsOfArr2.length; ++l){
+
+                        arr2[l] = restOfElementsOfArr2[m];
+
+                        ++m;
                     }
                  }
             }
             
+            let resultArr;
+
+            resultArr = arr2;
+
             return resultArr;
+
         }
 
-        console.log(frankenSplice(["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2));
+        let firstArr = ["claw", "tentacle"];
+        let secondArr = ["head", "shoulders", "knees", "toes"];
 
+        console.log(frankenSplice( firstArr, secondArr, 0));
+
+        console.log(firstArr);
+
+        console.log(secondArr);
+        
             // let arr1Str = arr1.join("");
             // let arr2Str = arr2.join("");
     
