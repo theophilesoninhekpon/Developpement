@@ -10,18 +10,22 @@
     
     <script>
 
+        let getEvenNumber = (arr) => {
+         
+            let copyArr = arr.slice();
 
-        let square = arr => {
+            copyArr.forEach( (element, i) => {
+                if (element % 2 === 1){
 
-            let tempArr = [];
+                    copyArr.splice(i, 1)
 
-            arr.forEach( element => tempArr.push(element * 2));
-
-            return tempArr;
+                    i = -1;
+                }
+            })
+            return copyArr;
         }
-        
 
-        console.log(square([5, 2, 5]));
+        console.log(getEvenNumber([0, 2, 4, 6, 5, 9]))
     </script>
 </body>
 </html>
