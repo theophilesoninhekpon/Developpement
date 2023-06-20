@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="start">Démarrer</button>
+    <button id="stop">Arrêter</button>
+
+    <p id="result"></p>
+    <script>
+
+        // let i = 0;
+        // let intervalId;
+        // document.querySelector("#start").addEventListener("click", function(){
+        //     intervalId = setInterval(function(){console.log(++i)}, 2000);
+
+        //     document.querySelector("#stop").addEventListener("click", function(){
+        //         clearInterval(intervalId);
+        //     })
+        // })
+
+        // let interval = setInterval(function(){
+        //     console.log("Super");
+        // }, 1000)
+
+        // clearTimeout(interval)
+
+        let i = 0;
+        let interval;
+        document.querySelector("#start").addEventListener("click", () =>{
+            interval = setInterval(() => {document.querySelector("#result").innerHTML= i++;}, 500)
+        })
+        document.querySelector("#stop").addEventListener("click", () =>{
+            clearInterval(interval);
+        })
+
+        const logo = document.getElementById("start");
+        console.log(logo.innerHTML);
+        console.log(logo.innerText);
+        console.log(logo.textContent);
+
+    </script>
+</body>
+</html>

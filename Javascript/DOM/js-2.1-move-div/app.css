@@ -38,3 +38,76 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
+
+/* Les classes du mouvement */
+
+.moveRight {
+    animation: moveRight 1s forwards;
+}
+
+.moveDown {
+    animation: moveDown 1s forwards;
+}
+
+.moveLeft {
+    animation: moveLeft 1s forwards;
+}
+
+.moveTop {
+    animation: moveTop 1s forwards;
+}
+
+
+/* Définition des animations */
+
+@keyframes moveRight {
+
+    100%{
+        transform: translateX(500px);
+    }
+    
+}
+
+@keyframes moveDown {
+    
+    0%{
+        transform: translateX(500px);
+    }
+    100%{
+        transform: translate(500px, 250px);
+    }
+
+}
+
+@keyframes moveDown {
+    
+    0%{
+        transform: translateX(500px);
+    }
+    100%{
+        transform: translate(500px, 250px);
+    }
+
+}
+
+@keyframes moveLeft {
+    
+    0%{
+        transform: translate(500px, 250px);
+    }
+    100%{
+        transform: translate(0px, 250px);
+    }
+
+}
+
+@keyframes moveTop {
+    
+    0%{
+        transform: translate(0px, 250px);
+    }
+    100%{
+        transform: translate(0px, 0px);
+    }
+
+}

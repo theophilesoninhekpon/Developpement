@@ -8,25 +8,14 @@
 </head>
 <body>
     
+    <button>Start</button>
+    <button></button>
     <script>
 
-        let getEvenNumber = (arr) => {
-            debugger
-            let copyArr = arr.slice();
-
-            copyArr.forEach( (element, i) => {
-                if (element % 2 === 1){
-
-                    copyArr.splice(i, 1)
-
-                    i = -1;
-                }
-            })
-            return copyArr;
-        }
-
-        console.log(getEvenNumber([0, 2, 4, 6, 5, 9]))
-        console.log(3 + "c")
+        // setTimeout(function(){alert("Bonjour 🚀")}, 2000)
+        let i = 0;
+        console.log(setTimeout(function(){console.log(i++)}, 2000));
+        console.log(setInterval(function(){console.log(i++)}, 2000));
     </script>
 </body>
 </html>
