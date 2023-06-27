@@ -5,45 +5,116 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <button id="start">Démarrer</button>
-    <button id="stop">Arrêter</button>
+    <article>
+        <h2>setTimeout</h2>
+        <div id = "ball1" class="ball ball1"></div>
+    </article>
+    <article>
+        <h2>setInterval</h2>
+        <div id = "ball2" class="ball ball2"></div>
+    </article>
+    <article>
+        <h2>requestAnimationFrame</h2>
+        <div id = "ball3" class="ball ball3"></div>
+    </article>
 
-    <p id="result"></p>
     <script>
+        'use strict'
 
-        // let i = 0;
-        // let intervalId;
-        // document.querySelector("#start").addEventListener("click", function(){
-        //     intervalId = setInterval(function(){console.log(++i)}, 2000);
+        const ball1 = document.querySelector("#ball1")
+        const ball2 = document.querySelector("#ball2")
+        const ball3 = document.querySelector("#ball3")
+        let position = {
+            ball1: 0,
+            ball2: 0,
+            ball3: 0,
+        };
+        const speed = 100 / 6
+        const windowWidth = window.innerWidth;
+        
+        let ball1Width = getFullWidth(ball1);
+        let ball2Width = getFullWidth(ball2);
+        let ball3Width = getFullWidth(ball3);
 
-        //     document.querySelector("#stop").addEventListener("click", function(){
-        //         clearInterval(intervalId);
-        //     })
-        // })
 
-        // let interval = setInterval(function(){
-        //     console.log("Super");
-        // }, 1000)
+        // Définition des fonctions
 
-        // clearTimeout(interval)
+        function getFullWidth(element){
 
-        let i = 0;
-        let interval;
-        document.querySelector("#start").addEventListener("click", () =>{
-            interval = setInterval(() => {document.querySelector("#result").innerHTML= i++;}, 500)
-        })
-        document.querySelector("#stop").addEventListener("click", () =>{
-            clearInterval(interval);
-        })
+            // Récupérer les propriétés calculées de l'élément
+            const styles = window.getComputedStyle(element);
 
-        const logo = document.getElementById("start");
-        console.log(logo.innerHTML);
-        console.log(logo.innerText);
-        console.log(logo.textContent);
+            // Récupérer la largeur, la bordure et le padding de l'élément
+            const width = element.offsetWidth;
+            const borderLeftWidth = parseFloat(styles.borderLeftWidth);
+            const borderRightWidth = parseFloat(styles.borderRightWidth);
+            const paddingLeft = parseFloat(styles.paddingLeft);
+            const paddingRight = parseFloat(styles.paddingRight);
 
+            // Calculer la largeur totale incluant la bordure et le padding
+            const fullWidth = width + borderLeftWidth + borderRightWidth + paddingLeft + paddingRight;
+
+            console.log(styles);
+            return fullWidth;
+
+        }
+
+        function moveWidthSetTimeout(){
+
+            position.ball1++;
+
+            ball1.style.transform = "translateX(" + position.ball1 + "px)"
+
+            if (position.ball1 >= windowWidth - ball1Width){
+                
+                    position.ball1 = -ball1Width
+                    
+            }
+            
+            setTimeout(moveWidthSetTimeout, 1)
+        }
+
+
+        function moveWidthSetInterval(){
+
+                setInterval(() =>{
+                    
+                position.ball2++;
+
+                ball2.style.transform = "translateX(" + position.ball2 + "px)"
+
+                if (position.ball2 >= windowWidth - ball2Width){
+                
+                    position.ball2 = -ball2Width
+
+                }
+                
+                }, 1)
+        }
+
+        function moveWidthRequestAnimationFrame(){
+
+            position.ball3++;
+
+            ball3.style.transform = "translateX(" + position.ball3 + "px)"
+
+            if (position.ball3 >= windowWidth - ball3Width){
+
+            position.ball3 = -ball3Width
+
+            }
+
+            requestAnimationFrame(moveWidthRequestAnimationFrame)
+
+        }
+
+        moveWidthSetTimeout();
+        moveWidthSetInterval();
+        moveWidthRequestAnimationFrame()
     </script>
 </body>
 </html>
