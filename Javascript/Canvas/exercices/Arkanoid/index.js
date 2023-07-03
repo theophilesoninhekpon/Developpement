@@ -98,17 +98,9 @@ function displayGame(){
 
             displayPaddleAndBall();
 
-            let numberOfBricks = 10;
-            let brickPositionX;
+            displayAllBricks();
 
-            for( let i = 0; i < numberOfBricks; i++){
-
-                brick.x += brick.width + 10;  
-                brick.x += brick.width + 10;  
-
-                displayBricks();
-
-            }
+            console.log(bricksCollection)
 
             animationID = requestAnimationFrame(playGame);
 
@@ -131,16 +123,51 @@ function displayGame(){
 
 // Dessin d'une brique
 
-function displayBricks(width, height){
+function displayBrick(x, y){
 
     context.strokeStyle = brick.color;
 
     context.fillStyle = brick.color;
 
-    context.fillRect(width, height, brick.width, brick.height);
+    context.fillRect(x, y, brick.width, brick.height);
 
 }
 
+let limitX = 9;
+let limitY = 5;
+brick.y = 15;
+
+function displayAllBricks(){
+
+    bricksCollection.forEach((element) => {
+        console.log("brique")
+        displayBrick(element.x, element.y);
+
+    } )
+}
+
+// Création des briques
+
+function createBricks(){
+
+    for ( let j = 0; j < limitY; j++){
+
+        brick.x = 14;
+        
+        for( let i = 0; i < limitX; i++){;
+            
+            bricksCollection.push(brick);
+
+            displayBrick(brick.x, brick.y);
+            
+            brick.x += brick.width + 15;   
+            
+        }
+
+        brick.y += brick.height + 10;
+    }
+
+}
 
 
 // Dessine la balle et le plateau
@@ -177,8 +204,8 @@ function initGame() {
     context = canvasDom.getContext("2d");
 
     displayPaddleAndBall();
-    
-    displayBricks();
+
+    createBricks();
 
     // Gestionnaire d'évènement de l'appui sur le clavier
 
@@ -268,13 +295,14 @@ function initGame() {
 
 function detectCollisions(){
 
+    // Detection des collisions entre la balle et le plateau
+
     let firstTierceOfPaddle = paddle.x + paddle.width * 1 / 3;
     let secondTierceOfPaddle = paddle.x + paddle.width * 2 / 3;
     let thirthTierceOfPaddle =  paddle.x + paddle.width;
 
     if(ball.y >= game.height - paddle.height - ball.radius && (ball.x + ball.radius > paddle.x && ball.x - ball.radius < paddle.x + paddle.width)){
 
-        console.log("balle retourne")
         if(ball.x > paddle.x &&  ball.x < firstTierceOfPaddle){
 
             ball.direction.x = -1;
@@ -297,6 +325,18 @@ function detectCollisions(){
         game.gameOver = true;
         ball.direction.y = 0;
 
+    }
+
+    // Detection de la collision entre la balle et une brique
+
+    for(let k = 0; k < bricksCollection; k++){
+
+        if(ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + bricksCollection[k].width && ball.y === bricksCollection[k].y + bricksCollection[k].height){
+
+            bricksCollection.splice(k-1, 1 );
+            ball.direction.y = 1;
+
+        }
     }
 
     return game.gameOver;
