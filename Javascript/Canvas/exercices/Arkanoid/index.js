@@ -9,6 +9,8 @@ let ballAreaWidth;
 let ballAreaHeight;
 let animationID;
 let count = 0;
+let limitX;
+let limitY;
 
 // Représentation de la balle
 let ball = {
@@ -82,9 +84,7 @@ function playGame(){
     detectCollisions();
 
     ball.y += ball.direction.y * ball.speed;
-    console.log(ball.y)
     ball.x += ball.direction.x * ball.speed;
-    console.log(ball.x)
     displayGame();
 
 }
@@ -97,10 +97,6 @@ function displayGame(){
         if( game.gameOver === false && game.start === true && game.pause === false){
 
             displayPaddleAndBall();
-
-            displayAllBricks();
-
-            console.log(bricksCollection)
 
             animationID = requestAnimationFrame(playGame);
 
@@ -133,38 +129,36 @@ function displayBrick(x, y){
 
 }
 
-let limitX = 9;
-let limitY = 5;
-brick.y = 15;
-
-function displayAllBricks(){
-
-    bricksCollection.forEach((element) => {
-        console.log("brique")
-        displayBrick(element.x, element.y);
-
-    } )
-}
-
 // Création des briques
 
 function createBricks(){
+
+    limitX = 9;
+    limitY = 5;
+    brick.y = 15;
 
     for ( let j = 0; j < limitY; j++){
 
         brick.x = 14;
         
-        for( let i = 0; i < limitX; i++){;
-            
-            bricksCollection.push(brick);
+        for( let i = 0; i < limitX; i++){
+
+            let eachBrick = {};
+
+            eachBrick.x = brick.x;
+
+            eachBrick.y = brick.y;
+
+            bricksCollection.push(eachBrick);
 
             displayBrick(brick.x, brick.y);
             
             brick.x += brick.width + 15;   
             
         }
-
+        
         brick.y += brick.height + 10;
+
     }
 
 }
@@ -193,6 +187,13 @@ function displayPaddleAndBall(){
     context.fillStyle = paddle.color;
 
     context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+    bricksCollection.forEach((element) => {
+
+        displayBrick(element.x, element.y);
+
+    } )
+  
 
 }
 
@@ -260,7 +261,6 @@ function initGame() {
             // Si le Game est over, on reprend au clic
             if(game.gameOver === true){
 
-                console.log("reprise au game over")
                 initPositions();
                 game.start = false;
                 game.pause = true;
@@ -282,7 +282,6 @@ function initGame() {
                 game.start = true;
                 game.pause = false;
                 playGame();
-                console.log(game.gameOver)
         
             }
         }
@@ -309,7 +308,6 @@ function detectCollisions(){
 
         } else if(ball.x > firstTierceOfPaddle && ball.x < secondTierceOfPaddle){
 
-            console.log(ball.x)
             ball.direction.x = 0;
 
         } else if(ball.x > secondTierceOfPaddle && ball.x < thirthTierceOfPaddle){
@@ -327,17 +325,21 @@ function detectCollisions(){
 
     }
 
+    console.log(bricksCollection[bricksCollection.length - 1].y + brick.height)
     // Detection de la collision entre la balle et une brique
 
-    for(let k = 0; k < bricksCollection; k++){
+    if(ball.y === 155){
 
-        if(ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + bricksCollection[k].width && ball.y === bricksCollection[k].y + bricksCollection[k].height){
+        ball.direction.y = 1;
+        
+        // bricksCollection.splice(k-1, 1);
 
-            bricksCollection.splice(k-1, 1 );
-            ball.direction.y = 1;
+        // console.log(bricksCollection);
 
-        }
+        // ball.direction.y = 1;
+
     }
+    
 
     return game.gameOver;
     
@@ -350,7 +352,7 @@ function initPositions(){
 
     paddle.x = 240;
 
-    paddle.y = 540; 
+    paddle.y = 540;
 
     ball.x = paddle.x + paddle.width / 2;
 
