@@ -1,6 +1,12 @@
 
 class Request {
 
+    constructor(){
+
+        this.inputs;
+
+        
+    }
     getInputs(inputs){
 
         this.inputs = inputs;
@@ -11,4 +17,4 @@ class Request {
 
 }
 
-export {Request}
+export default Request

@@ -14,42 +14,42 @@ let limitY;
 
 // Représentation de la balle
 let ball = {
-    x: 270,
-    y: 485,
-    color: "red",
-    radius: 10,
-    direction: {x:0, y:-1},
-    speed : 10
+        x: 270,
+        y: 485,
+        color: "red",
+        radius: 10,
+        direction: { x: 0, y: -1 },
+        speed: 2
 }
 
 // Représentation de l'espace de jeu
 let game = {
-    width: 600,
-    height: 550,
-    color: "lightgray",
-    gameOver: false,
-    start: false,
-    pause: false
+        width: 600,
+        height: 550,
+        color: "lightgray",
+        gameOver: false,
+        start: false,
+        pause: false
 }
 
 // Représentation du plateau
 let paddle = {
-    x: 240,
-    y: 540,
-    speed: 25,
-    color: "blue",
-    width: 120,
-    height: 10,
-    directionX: 1
+        x: 240,
+        y: 540,
+        speed: 25,
+        color: "blue",
+        width: 120,
+        height: 10,
+        directionX: 1
 }
 
 // Représentation d'une brique
 let brick = {
-    x: 0,
-    y: 0,
-    color: "lightblue",
-    width: 50,
-    height: 20
+        x: 0,
+        y: 0,
+        color: "lightblue",
+        width: 50,
+        height: 20
 }
 
 let bricksCollection = [];
@@ -58,59 +58,68 @@ let bricksCollection = [];
 /****************************** FONCTIONS *******************************************/
 /************************************************************************************/
 
-function playGame(){
-    
-    // Changement de la direction Y de la balle
-    if(ball.y < ball.radius ){
+function playGame() {
 
-        ball.direction.y = 1;
-        
-    } else if ( ball.y > game.height - ball.radius) {
+        // Changement de la direction Y de la balle
 
-        ball.direction.y = -1;
+        if (ball.y < ball.radius) {
 
-    }
+                ball.direction.y = 1;
 
-    if(ball.x < ball.radius ){
+        } else if (ball.y > game.height - ball.radius) {
 
-        ball.direction.x = 1;
-        
-    } else if ( ball.x > game.width - ball.radius) {
+                ball.direction.y = -1;
 
-        ball.direction.x = -1;
+        }
 
-    }
-    
-    detectCollisions();
+        if (ball.x < ball.radius) {
 
-    ball.y += ball.direction.y * ball.speed;
-    ball.x += ball.direction.x * ball.speed;
-    displayGame();
+                ball.direction.x = 1;
+
+        } else if (ball.x > game.width - ball.radius) {
+
+                ball.direction.x = -1;
+
+        }
+
+        detectCollisions();
+
+        ball.y += ball.direction.y * 5;
+        ball.x += ball.direction.x * 5;
+        displayGame();
 
 }
 
 
 // Animation de la balle
 
-function displayGame(){
-    
-        if( game.gameOver === false && game.start === true && game.pause === false){
+function displayGame() {
 
-            displayPaddleAndBall();
+        if (game.gameOver === false && game.start === true && game.pause === false) {
 
-            animationID = requestAnimationFrame(playGame);
+                displayPaddleAndBall();
 
-        } else if(game.start === false && game.pause === true){
+                animationID = requestAnimationFrame(playGame);
 
-            cancelAnimationFrame(animationID);
+        } else if (game.start === false && game.pause === true) {
 
-        } else if(game.gameOver === true){
+                cancelAnimationFrame(animationID);
+        }
+         else if(game.start === false && game.end === true){
 
-            cancelAnimationFrame(animationID);
+                cancelAnimationFrame(animationID);
 
-            context.font = "bold 30px Courier New";
+                context.font = "bold 30px Courier New";
 
-            context.fillText("Game over", (game.width - context.measureText("Game over").width) / 2, game.height /2  );
+                context.fillText("Félicitations !", (game.width - context.measureText("Félicitations !").width) / 2, game.height / 2);
+
+         } else if (game.gameOver === true) {
+
+                cancelAnimationFrame(animationID);
+
+                context.font = "bold 30px Courier New";
+
+                context.fillText("Game over", (game.width - context.measureText("Game over").width) / 2, game.height / 2);
 
         }
 
@@ -119,246 +128,253 @@ function displayGame(){
 
 // Dessin d'une brique
 
-function displayBrick(x, y){
+function displayBrick(x, y) {
 
-    context.strokeStyle = brick.color;
+        context.strokeStyle = brick.color;
 
-    context.fillStyle = brick.color;
+        context.fillStyle = brick.color;
 
-    context.fillRect(x, y, brick.width, brick.height);
+        context.fillRect(x, y, brick.width, brick.height);
 
 }
 
 // Création des briques
 
-function createBricks(){
+function createBricks() {
 
-    limitX = 9;
-    limitY = 5;
-    brick.y = 15;
+        limitX = 9;
+        limitY = 5;
+        brick.y = 15;
 
-    for ( let j = 0; j < limitY; j++){
+        for (let j = 0; j < limitY; j++) {
 
-        brick.x = 14;
-        
-        for( let i = 0; i < limitX; i++){
+                brick.x = 14;
 
-            let eachBrick = {};
+                for (let i = 0; i < limitX; i++) {
 
-            eachBrick.x = brick.x;
+                        let eachBrick = {};
 
-            eachBrick.y = brick.y;
+                        eachBrick.x = brick.x;
 
-            bricksCollection.push(eachBrick);
+                        eachBrick.y = brick.y;
 
-            displayBrick(brick.x, brick.y);
-            
-            brick.x += brick.width + 15;   
-            
+                        bricksCollection.push(eachBrick);
+
+                        displayBrick(brick.x, brick.y);
+
+                        brick.x += brick.width + 15;
+
+                }
+
+                brick.y += brick.height + 10;
+
         }
-        
-        brick.y += brick.height + 10;
-
-    }
 
 }
 
 
 // Dessine la balle et le plateau
 
-function displayPaddleAndBall(){
+function displayPaddleAndBall() {
 
-    context.clearRect(0,  0, 1900, 550)
+        context.clearRect(0, 0, 1900, 550)
 
-    context.strokeStyle = ball.color;
+        context.strokeStyle = ball.color;
 
-    context.fillStyle = ball.color;
+        context.fillStyle = ball.color;
 
-    context.beginPath();
-        
-    context.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI);
-            
-    context.stroke();
-            
-    context.fill();
+        context.beginPath();
 
-    context.strokeStyle = paddle.color;
+        context.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI);
 
-    context.fillStyle = paddle.color;
+        context.stroke();
 
-    context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+        context.fill();
 
-    bricksCollection.forEach((element) => {
+        context.strokeStyle = paddle.color;
 
-        displayBrick(element.x, element.y);
+        context.fillStyle = paddle.color;
 
-    } )
-  
+        context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+        bricksCollection.forEach((element) => {
+
+                displayBrick(element.x, element.y);
+
+        })
+
 
 }
 
 
 function initGame() {
 
-    canvasDom = document.getElementById("canvas");
+        canvasDom = document.getElementById("canvas");
 
-    context = canvasDom.getContext("2d");
+        context = canvasDom.getContext("2d");
 
-    displayPaddleAndBall();
+        displayPaddleAndBall();
 
-    createBricks();
+        createBricks();
 
-    // Gestionnaire d'évènement de l'appui sur le clavier
+        // Gestionnaire d'évènement de l'appui sur le clavier
 
-    document.addEventListener("keydown", function keyboardEvent(event){
+        document.addEventListener("keydown", function keyboardEvent(event) {
 
-        paddle.speed = 25;
+                paddle.speed = 25;
 
-        if(event.code === "ArrowRight"){
+                if (event.code === "ArrowRight") {
 
-            paddle.directionX = 1;
-            paddle.x += paddle.directionX * paddle.speed;
-            
-        } else if(event.code === "ArrowLeft"){
+                        paddle.directionX = 1;
+                        paddle.x += paddle.directionX * paddle.speed;
 
-            paddle.directionX = -1;
-            paddle.x += paddle.directionX * paddle.speed;
+                } else if (event.code === "ArrowLeft") {
 
-        }
+                        paddle.directionX = -1;
+                        paddle.x += paddle.directionX * paddle.speed;
 
-        // Position de la balle au milieu du plateau au démarrage
-        if(game.start === false){
+                }
 
-            if(count === 0){
+                // Position de la balle au milieu du plateau au démarrage
+                if (game.start === false) {
 
-                ball.x = paddle.x + paddle.width / 2;
-                ball.y = paddle.y - ball.radius;
+                        if (count === 0) {
 
-                displayPaddleAndBall();
+                                ball.x = paddle.x + paddle.width / 2;
+                                ball.y = paddle.y - ball.radius;
 
-            }
+                                displayPaddleAndBall();
 
-        }
-        
-        // Pour restreindre le mouvement du plateau
-        if(paddle.x > game.width - paddle.width){
+                        }
 
-            paddle.x = game.width - paddle.width;
-            paddle.speed = 0;
+                }
 
-        } else if(paddle.x < 0) {
+                // Pour restreindre le mouvement du plateau
+                if (paddle.x > game.width - paddle.width) {
 
-            paddle.x = 0;
-            paddle.speed = 0;
+                        paddle.x = game.width - paddle.width;
+                        paddle.speed = 0;
 
-        }
+                } else if (paddle.x < 0) {
 
-        // Détection du clic sur la touche Espace
-        if(event.code === "Space"){
+                        paddle.x = 0;
+                        paddle.speed = 0;
 
-            count++;
-            
-            // Si le Game est over, on reprend au clic
-            if(game.gameOver === true){
+                }
 
-                initPositions();
-                game.start = false;
-                game.pause = true;
-                game.gameOver = false;
-                count = 0;
-                displayPaddleAndBall();
+                // Détection du clic sur la touche Espace
+                if (event.code === "Space") {
 
-            } 
+                        count++;
 
-            // Play et Pause
-            if(count % 2 === 0){
+                        // Si le Game est over, on reprend au clic
+                        if (game.gameOver === true) {
 
-                game.start = false;
-                game.pause = true;
-                // cancelAnimationFrame(animationID);
+                                initPositions();
+                                game.start = false;
+                                game.pause = true;
+                                game.gameOver = false;
+                                count = 0;
+                                displayPaddleAndBall();
 
-            } else if( count % 2 === 1){
-    
-                game.start = true;
-                game.pause = false;
-                playGame();
-        
-            }
-        }
+                        }
 
-    })
+                        // Play et Pause
+                        if (count % 2 === 0) {
+
+                                game.start = false;
+                                game.pause = true;
+                                // cancelAnimationFrame(animationID);
+
+                        } else if (count % 2 === 1) {
+
+                                game.start = true;
+                                game.pause = false;
+                                playGame();
+
+                        }
+                }
+
+        })
 
 }
 
 // Détection de la collision entre la balle et le plateau
 
-function detectCollisions(){
+function detectCollisions() {
 
-    // Detection des collisions entre la balle et le plateau
+        // Detection des collisions entre la balle et le plateau
 
-    let firstTierceOfPaddle = paddle.x + paddle.width * 1 / 3;
-    let secondTierceOfPaddle = paddle.x + paddle.width * 2 / 3;
-    let thirthTierceOfPaddle =  paddle.x + paddle.width;
+        let firstTierceOfPaddle = paddle.x + paddle.width * 1 / 3;
+        let secondTierceOfPaddle = paddle.x + paddle.width * 2 / 3;
+        let thirthTierceOfPaddle = paddle.x + paddle.width;
 
-    if(ball.y >= game.height - paddle.height - ball.radius && (ball.x + ball.radius > paddle.x && ball.x - ball.radius < paddle.x + paddle.width)){
 
-        if(ball.x > paddle.x &&  ball.x < firstTierceOfPaddle){
 
-            ball.direction.x = -1;
+        if (ball.y >= game.height - paddle.height - ball.radius && (ball.x + ball.radius > paddle.x && ball.x - ball.radius < paddle.x + paddle.width)) {
 
-        } else if(ball.x > firstTierceOfPaddle && ball.x < secondTierceOfPaddle){
+                if (ball.x > paddle.x && ball.x < firstTierceOfPaddle) {
 
-            ball.direction.x = 0;
+                        ball.direction.x = -1;
 
-        } else if(ball.x > secondTierceOfPaddle && ball.x < thirthTierceOfPaddle){
+                } else if (ball.x > firstTierceOfPaddle && ball.x < secondTierceOfPaddle) {
 
-            ball.direction.x = 1;
+                        ball.direction.x = 0;
+
+                } else if (ball.x > secondTierceOfPaddle && ball.x < thirthTierceOfPaddle) {
+
+                        ball.direction.x = 1;
+
+                }
+
+                ball.direction.y = -1;
+
+        } else if (ball.y === game.height - ball.radius) {
+
+                game.gameOver = true;
+                ball.direction.y = 0;
 
         }
 
-        ball.direction.y = -1;
+        // Detection de la collision entre la balle et une brique
 
-    } else if(ball.y === game.height - ball.radius){
-        
-        game.gameOver = true;
-        ball.direction.y = 0;
+        for (let k = 0; k < bricksCollection.length; k++) {
 
-    }
+                if (ball.y - ball.radius === bricksCollection[k].y + brick.height && ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + brick.width) {
 
-    console.log(bricksCollection[bricksCollection.length - 1].y + brick.height)
-    // Detection de la collision entre la balle et une brique
+                        ball.direction.y = 1;
 
-    if(ball.y === 155){
+                        bricksCollection.splice(k, 1);
 
-        ball.direction.y = 1;
-        
-        // bricksCollection.splice(k-1, 1);
+                } else if (ball.y + ball.radius === bricksCollection[k].y + brick.height && ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + brick.width) {
 
-        // console.log(bricksCollection);
+                        ball.direction.y = -1;
 
-        // ball.direction.y = 1;
+                        bricksCollection.splice(k, 1);
 
-    }
-    
 
-    return game.gameOver;
-    
+                }
+        }
+
+
+        return game.gameOver;
+
 }
 
 
 // Réinitialisation de la position du plateau et de la balle au milieu
 
-function initPositions(){
+function initPositions() {
 
-    paddle.x = 240;
+        paddle.x = 240;
 
-    paddle.y = 540;
+        paddle.y = 540;
 
-    ball.x = paddle.x + paddle.width / 2;
+        ball.x = paddle.x + paddle.width / 2;
 
-    ball.y = paddle.y - ball.radius;
+        ball.y = paddle.y - ball.radius;
 
-    ball.direction.y = 0;
+        ball.direction.y = 0;
 
 }
 
@@ -366,13 +382,13 @@ function initPositions(){
 /****************************** LOGIQUE *******************************************/
 /************************************************************************************/
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
-    // On réinitialise tout au début
-    initPositions();
+        // On réinitialise tout au début
+        initPositions();
 
-    // On initialise le jeu
-    initGame();
+        // On initialise le jeu
+        initGame();
 
 
 })

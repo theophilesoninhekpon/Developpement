@@ -1,4 +1,4 @@
-import { Request } from "./Request.js";
+import Request from "./Request.js";
 
 export function dealWithForm(){
 
@@ -15,4 +15,20 @@ export function dealWithForm(){
     request.getInputs(inputs);
 
 })
+}
+
+export function add(a, b){
+    return a + b;
+}
+
+export function substract(a, b){
+    return a - b;
+}
+
+export function multiply(a, b){
+    return a * b;
+}
+
+export function divide(a, b){
+    return a / b;
 }
