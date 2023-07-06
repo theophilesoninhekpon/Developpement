@@ -29,7 +29,8 @@ let game = {
         color: "lightgray",
         gameOver: false,
         start: false,
-        pause: false
+        pause: false,
+        end: false
 }
 
 // Représentation du plateau
@@ -105,7 +106,9 @@ function displayGame() {
 
                 cancelAnimationFrame(animationID);
         }
-         else if(game.start === false && game.end === true){
+         else if (game.start === false && game.end === true){
+
+                displayPaddleAndBall();
 
                 cancelAnimationFrame(animationID);
 
@@ -138,7 +141,7 @@ function displayBrick(x, y) {
 
 }
 
-// Création des briques
+// Création des briques au début
 
 function createBricks() {
 
@@ -169,11 +172,11 @@ function createBricks() {
                 brick.y += brick.height + 10;
 
         }
-
+        
 }
 
 
-// Dessine la balle et le plateau
+// Dessine la balle et le plateau et des briques restantes
 
 function displayPaddleAndBall() {
 
@@ -276,6 +279,7 @@ function initGame() {
                                 game.gameOver = false;
                                 count = 0;
                                 displayPaddleAndBall();
+                                createBricks()
 
                         }
 
@@ -311,7 +315,7 @@ function detectCollisions() {
 
 
 
-        if (ball.y >= game.height - paddle.height - ball.radius && (ball.x + ball.radius > paddle.x && ball.x - ball.radius < paddle.x + paddle.width)) {
+        if (ball.y === game.height - paddle.height - ball.radius && (ball.x + ball.radius > paddle.x && ball.x - ball.radius < paddle.x + paddle.width)) {
 
                 if (ball.x > paddle.x && ball.x < firstTierceOfPaddle) {
 
@@ -340,22 +344,24 @@ function detectCollisions() {
 
         for (let k = 0; k < bricksCollection.length; k++) {
 
-                if (ball.y - ball.radius === bricksCollection[k].y + brick.height && ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + brick.width) {
+                if (ball.y - ball.radius <= bricksCollection[k].y + brick.height && ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + brick.width && ball.y + ball.radius >= bricksCollection[k].y ) {
 
-                        ball.direction.y = 1;
-
+                        ball.direction.y *= -1;
+                    
                         bricksCollection.splice(k, 1);
-
-                } else if (ball.y + ball.radius === bricksCollection[k].y + brick.height && ball.x + ball.radius > bricksCollection[k].x && ball.x - ball.radius < bricksCollection[k].x + brick.width) {
-
-                        ball.direction.y = -1;
-
-                        bricksCollection.splice(k, 1);
-
-
-                }
+                    
+                    } 
         }
 
+        // Fin du jeu lorsque qu'il n'y a plus de brique
+
+        if(bricksCollection.length === 0){
+
+                console.log("brique terminée !");
+                game.start = false;
+                game.end = true;
+
+        }
 
         return game.gameOver;
 
