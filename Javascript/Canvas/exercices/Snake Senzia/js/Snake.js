@@ -7,15 +7,19 @@ class Snake{
     #color;
     #x;
     #y;
-    
+    #snakeParts;
+    #game;
+
     // Constructeur
-    constructor(width, height, x, y, color){
+    constructor(width, height, x, y, color, game = {}){
 
         this.#width = width;
         this.#height = height;
         this.#x = x;
         this.#y = y;
         this.#color = color;
+        this.#snakeParts = [];
+        this.#game = game;
         
     }
 
@@ -71,10 +75,27 @@ class Snake{
     // Méthodes
 
     displaySnake(){
-       
-        context.fillStyle = this.#color;
-        context.fillRect(this.#x, this.#y, this.#width, this.#height);
+        
+        this.#snakeParts.forEach((element)=>{
+            
+            context.clearRect(0, 0, this.#game.width, this.#game.height);
+            context.fillStyle = this.#color;
+            context.fillRect(element.x, element.y, this.#width, this.#height);
+
+        });
+        
+    }
+
+    growSnake(){
+
+        this.#x += this.#width;
+        let snakePart = {};
+        snakePart.x = this.#x;
+        snakePart.y = this.#y;
+        this.#snakeParts.push(snakePart);
         
     }
     
 }
+
+export default Snake;

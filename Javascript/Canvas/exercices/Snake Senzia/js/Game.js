@@ -4,13 +4,11 @@ class Game{
 
     #width;
     #height;
-    #color;
 
-    constructor(width, height, color){
+    constructor(width, height){
 
         this.#width = width;
         this.#height = height;
-        this.#color = color;
 
     }
 
@@ -51,3 +49,5 @@ class Game{
     }
 
 }
+
+export default Game;

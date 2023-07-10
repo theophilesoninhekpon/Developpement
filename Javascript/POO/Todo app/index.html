@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <script type="module" src="./js/index.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/dd3ee9631d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1> Todos </h1>
+    <div id="wrapper">
+        <form method="post">
+            <div class="todo">
+                <span class="fas fa-angle-down"></span>
+                <input type="text" id="todo" placeholder="What needs to be done ?">
+            </div>
+        </form>
+        <div id="todos"></div>
+        <div id="toolbar">
+            <p id="item-number"></p>
+            <button>All</button>
+            <button>Active</button>
+            <button>Completed</button>
+        </div>
+    </div>
+</body>
+</html>
