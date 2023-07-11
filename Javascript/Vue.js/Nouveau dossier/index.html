@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span v-bind:title="message">
+            Passez votre souris sur moi et vous verrez mon titre 
+        </span>
+        <div id="">
+            <p v-if="seen==56">Un paragraphe</p>
+            <p v-else>Un autre paragraphe</p>
+        </div>
+        <div>
+            <p v-if="age===10"> j'ai {{ age }} ans</p>
+            <p v-else-if="age===22"> tu es  adulte</p>
+            <p v-else> t'es vieux </p>
+        </div>
+
+        <ol>
+            <li v-for="a in notes">
+                Note: {{a}}
+            </li>
+        </ol>
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.0-rc.8/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

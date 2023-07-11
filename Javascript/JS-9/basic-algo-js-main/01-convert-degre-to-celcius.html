@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        function convertCToF(celsius){
+            let farhenheit = celsius * 9 / 5 + 32;
+            return farhenheit; 
+        }
+
+        let temperature = parseFloat(window.prompt("Tapez une température en dégré celsius"));
+        
+        while(isNaN(temperature)){
+            temperature = window.prompt("Saisissez un nombre valide !");
+        }
+
+        result = convertCToF(temperature);
+
+        document.write("Une température de " + temperature + "°C " + "équivalente à " + result + "F.")
+    </script>
+</body>
+</html>

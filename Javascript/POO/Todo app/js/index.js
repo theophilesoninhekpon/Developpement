@@ -1,18 +1,76 @@
 'use strict'
 
-import Todo from "./Todo.js";
+
+/********************************************************************************
+ *************************************VARIABLES*********************************
+ *******************************************************************************/
+let todo;
+let todos;
+let todoCheckBtn;
+let todoDeleteBtn;
+let todoArray = [];
+let defaultStatement;
+let todoList;
+//Ajout d'une tâche
+function addTodo(todo){
+
+    todoArray.push(todo);
+    
+}
+
+
+function displayTodo(){
+    
+    if(todoArray.length > 0){
+        
+            todoList = document.getElementById("todo-list");
+            defaultStatement.style.display = "none";
+
+            let element = todoArray[todoArray.length - 1];
+            
+             // élément de liste
+            let todoListItem = document.createElement("li");
+            todoListItem.classList.add("todo");
+            todoListItem.setAttribute("id", `${element.id}`);
+
+            // bouton de validation
+            let checkBtn = document.createElement("span");
+            checkBtn.classList.add("checkbtn");
+            
+            // description de la tâche
+            let todoDescription = document.createElement("span");
+            todoDescription.classList.add("todo-description");
+            todoDescription.setAttribute("contenteditable", "true");
+            todoDescription.innerHTML = element.description;
+
+            // bouton de suppression de la tâche
+            let deleteBtn = document.createElement("span");
+            deleteBtn.classList.add("deletebtn", "fas", "fa-times");
+
+            // Ajout des noeuds dans le Dom
+            todoListItem.appendChild(checkBtn);
+            todoListItem.appendChild(todoDescription);
+            todoListItem.appendChild(deleteBtn);
+            todoList.append(todoListItem);
+
+    } else{
+
+        defaultStatement.style.display = "block";
+
+    }
+
+}
 
 document.addEventListener("DOMContentLoaded", ()=>{
-
+    
     let input = document.getElementById("todo");
-    let todo;
-    let todoCheckBtn;
-    let todoDeleteBtn;
-    let todoArray = [];
-    let todos = document.getElementById("todos");
-    todos.innerHTML = `<ul id="todo-list"></ul>`;
-    let todoList = document.getElementById("todo-list");
+    
+    todos = document.getElementById("todos");
+    defaultStatement = document.querySelector("#todos > span");
+
     let todoCount = 0;
+    
+    displayTodo();
 
     document.querySelector("form").addEventListener("submit", (event)=>{
 
@@ -29,20 +87,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             if(typeof todoDescription === "string"){
                 
-                todo = new Todo(todoDescription, todoCount);
-                todo.addTodo();
+                let todo = {};
+                todo.id = todoCount;
+                todo.description = todoDescription;
+                todo.isChecked = false;
+                todo.checkCount = 0;
+                addTodo(todo);
                 input.value = "";
-                todoArray.push(todo);
+
+                displayTodo();
                 
             } else{
                 
                 alert("Veuillez entrer une chaîne de caractères valide");
                 
             }
-            
-            console.log(todoArray)
-
-         
         
         }
         
@@ -55,9 +114,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             let targetParent = event.target.parentElement;
             let parentId = targetParent.id;
-            let relativeTodoId = parseInt(parentId.slice(5, parentId.length));
-            console.log(relativeTodoId)
-            let element = todoArray[relativeTodoId - 1];
+            
             console.log(element)
             element.checkTodo();
 

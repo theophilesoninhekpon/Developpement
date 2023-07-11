@@ -4,15 +4,14 @@ class Todo {
 
     #description;
     #isChecked;
-    #todoId;
+    #id;
     #checkCount;
-    todoWrapper = document.getElementById("todo-list");
 
     constructor(description, todoId){
 
         this.#description = description;
         this.#isChecked = false;
-        this.#todoId = todoId;
+        this.#id = todoId;
         this.#checkCount = 0;
 
     }
@@ -41,15 +40,15 @@ class Todo {
 
     }
 
-    get todoId(){
+    get id(){
 
-        return this.#todoId;
+        return this.#id;
 
     }
 
-    set todoId(newId){
+    set id(newId){
 
-        this.#todoId = newId;
+        this.#id = newId;
 
     }
 
@@ -57,35 +56,7 @@ class Todo {
     // Méthode d'ajout de la tâche à la liste
     addTodo(){
 
-        // élément de liste
-        const todoListItem = document.createElement("li");
-        todoListItem.classList.add("todo");
-        todoListItem.setAttribute("id", `todo-${this.#todoId}`);
-
-        // bouton de validation
-        const checkBtn = document.createElement("button");
-        checkBtn.classList.add("checkbtn");
-
-        // description de la tâche
-        const todoDescription = document.createElement("span");
-        todoDescription.classList.add("todo-description");
-        todoDescription.setAttribute("contenteditable", "true");
-        todoDescription.innerHTML = this.#description;
-
-        // bouton de suppression de la tâche
-        const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("deletebtn");
-
-        // Icone de suppression
-        const deleteIcon = document.createElement("span");
-        deleteIcon.classList.add("delete-icon", "fas", "fa-times");
-
-        // Ajout des noeuds dans le Dom
-        deleteBtn.appendChild((deleteIcon));
-        todoListItem.appendChild(checkBtn);
-        todoListItem.appendChild(todoDescription);
-        todoListItem.appendChild(deleteBtn);
-        this.todoWrapper.appendChild(todoListItem);
+       
        
     }
 

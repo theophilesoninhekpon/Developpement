@@ -6,3 +6,23 @@
 
 }
 
+body{
+    margin: 0;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(216, 216, 216);
+}
+
+h1{
+    
+}
+ul{
+    list-style: none;
+}
+
+.wrapper{
+
+    background-color: #fff;
+}
