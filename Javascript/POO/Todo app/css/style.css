@@ -8,21 +8,139 @@
 
 body{
     margin: 0;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Verdana, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(216, 216, 216);
+    background-color: rgb(238, 238, 238);
+}
+
+.container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 2rem;
+
 }
 
 h1{
+    font-size: 50px;
+    color: rgb(217, 58, 58);
+}
+
+.default{
+
+    color: rgb(170, 170, 170);
+    font-size: 1.3rem;
+    margin-left: 2.3rem;
+    display: block;
+    text-align: center;
+    margin-block: 2rem;
+}
+
+.todo{
+    
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+
+}
+
+.todo-input{
+    
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.8rem;
+    background-color: rgb(217, 58, 58);
+    border-radius: 5rem;
+
+}
+
+ul{
+    
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+
+}
+
+ul.todo-list li {
+
+    display: flex;
+    align-items: center;
+    padding-block: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgb(188, 188, 188);
+    color: rgb(170, 170, 170);
+
+}
+
+input{
+    border: 1px solid rgba(255, 255, 255, 0);
+    padding-block: 0.5rem;
+    padding-inline: 0.4rem;
+    width: 100%;
+    font-size: 1.3rem;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
     
 }
-ul{
-    list-style: none;
+
+input::placeholder{
+    color: rgba(255, 255, 255, 0.43);
+    font-size: 1.3rem;
 }
+
+.select-icon{
+    color: rgba(255, 255, 255, 0.43);
+}
+
 
 .wrapper{
 
-    background-color: #fff;
+    flex-basis: 100%;
+
+}
+
+.deletebtn{
+    margin-left: auto;
+}
+
+.checkbtn{
+
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 50%;
+    width: 20px;
+    aspect-ratio: 1;
+
+}
+
+.todo-description{
+
+    padding-inline: 0.5rem;
+
+}
+
+.toolbar{
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.toolbar{
+
+    margin-top: 5rem;
+
+}
+
+.validate{
+    color: rgb(108, 175, 8);
 }

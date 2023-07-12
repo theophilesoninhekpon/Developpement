@@ -1,0 +1,22 @@
+<script type="module">
+import { createApp } from 'vue'
+
+createApp({
+  data() {
+    return {
+      awesome: true
+    }
+  },
+  methods: {
+    toggle() {
+      // ...
+    }
+  }
+}).mount('#app')
+</script>
+
+<div id="app">
+  <button @click="toggle">toggle</button>
+  <h1>Vue is awesome!</h1>
+  <h1>Oh no 😢</h1>
+</div>

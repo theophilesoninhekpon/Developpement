@@ -10,24 +10,30 @@
     <script src="https://kit.fontawesome.com/dd3ee9631d.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1> Todos </h1>
-    <div class="wrapper" id="wrapper">
+    <div class="container">
+
+        <h1> Todo App</h1>
+        <div class="wrapper" id="wrapper">
         <form method="post">
-            <div class="todo">
-                <span class="fas fa-angle-down"></span>
+            <div class="todo-input">
+                <span class="select-icon fas fa-angle-down"></span>
                 <input type="text" id="todo" placeholder="What needs to be done ?">
             </div>
         </form>
         <div id="todos"> 
-            <ul id="todo-list"></ul>
-            <span> Aucune tâche planifiée !</span>
+            <ul class="todo-list" id="todo-list"></ul>
+            <span class="default"> Aucune tâche planifiée !</span>
         </div>
-        <div id="toolbar">
+        <div class="toolbar" id="toolbar">
             <p id="item-number"></p>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
+            <div class="toolbar-btn">
+                <button>All</button>
+                <button>Active</button>
+                <button>Completed</button>
+            </div>
         </div>
+        </div>
+
     </div>
    
 </body>

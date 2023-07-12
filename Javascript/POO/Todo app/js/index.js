@@ -11,6 +11,8 @@ let todoDeleteBtn;
 let todoArray = [];
 let defaultStatement;
 let todoList;
+
+
 //Ajout d'une tâche
 function addTodo(todo){
 
@@ -18,7 +20,35 @@ function addTodo(todo){
     
 }
 
+// Validation de la tâche
+function checkTodo(todoId){
 
+        // On récupère l'élément du tableau qui correspond à la tâche actuelle
+        let element = todoArray.filter((todoElt)=> todoElt.id === parseInt(todoId))[0];
+        element.checkCount++;
+
+        // Icône de validation de la tâche
+        let currentTodo = document.getElementById(`${element.id}`);
+        let todoBtn = currentTodo.childNodes[0];
+        element.isChecked = true;
+        let todoDescription = currentTodo.childNodes[1];
+
+        // Affichage de l'icône check dans le bouton de validation
+        if(element.checkCount % 2 === 1){
+
+            todoBtn.classList.add("validate","far", "fa-check-circle");
+            todoDescription.style.textDecoration = "line-through";
+            
+        // Au second clic, on supprime l'icône 
+        } else{
+        
+            todoBtn.classList.remove("validate","far", "fa-check-circle");
+            todoDescription.style.textDecoration = "none";
+
+        }
+}
+
+// Affichage de la tâche dans le DOM
 function displayTodo(){
     
     if(todoArray.length > 0){
@@ -112,23 +142,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         if(event.target.classList.contains("checkbtn")){
 
-            let targetParent = event.target.parentElement;
-            let parentId = targetParent.id;
+            let targetParentId = event.target.parentElement.id;
+            console.log(typeof targetParentId)
             
-            console.log(element)
-            element.checkTodo();
+            checkTodo(targetParentId);
+        }
 
-        } else if((event.target.classList.contains("check-icon"))){
-
-            let targetParent = event.target.parentElement;
-            let parentId = targetParent.parentElement.id;
-            let relativeTodoId = parseInt(parentId.slice(5, parentId.length));
-            console.log(relativeTodoId)
-            let element = todoArray[relativeTodoId - 1];
-            console.log(element)
-            element.checkTodo();
-
-        } else if(event.target.classList.contains("deletebtn")){
+        if(event.target.classList.contains("deletebtn")){
 
             let targetParent = event.target.parentElement;
             let parentId = targetParent.id;
@@ -138,18 +158,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.log(element)
             element.deleteTodo();
             console.log(todoArray)
-            
-        } else if((event.target.classList.contains("delete-icon"))){
-            
-            let targetParent = event.target.parentElement;
-            let parentId = targetParent.parentElement.id;
-            let relativeTodoId = parseInt(parentId.slice(5, parentId.length));
-            console.log(relativeTodoId)
-            let element = todoArray[relativeTodoId - 1];
-            console.log(element)
-            element.deleteTodo();
-            console.log(todoArray)
-            
         }
 
     })

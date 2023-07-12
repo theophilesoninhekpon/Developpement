@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"
+        integrity="sha512-Wbf9QOX8TxnLykSrNGmAc5mDntbpyXjOw9zgnKql3DgQ7Iyr5TCSPWpvpwDuo+jikYoSNMD9tRRH854VfPpL9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- Moustache -->
+        <h1>{{msg}}</h1>
+
+    </div>
+
+    <script type="module">
+        import { createApp } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js"
+
+        createApp({
+
+            data(){
+
+                return({
+
+                    msg: "Salut"
+
+                })
+
+            }
+
+        }).mount('#app');
+
+    </script>
+</body>
+
+</html>
