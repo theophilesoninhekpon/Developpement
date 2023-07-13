@@ -99,12 +99,7 @@ class Todo {
 
 
     // Suppression de la tâche
-    deleteTodo(){
-
-        const todo = document.querySelector(`#todo-${this.#todoId}`);
-        this.todoWrapper.removeChild(todo);
-
-    }
+    
 
 
 }

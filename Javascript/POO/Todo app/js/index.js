@@ -41,12 +41,41 @@ function checkTodo(todoId){
             
         // Au second clic, on supprime l'icône 
         } else{
-        
+            
+            element.isChecked = false;
             todoBtn.classList.remove("validate","far", "fa-check-circle");
             todoDescription.style.textDecoration = "none";
 
         }
 }
+
+// Modification de la tâche
+function updateTodo(todoId){
+
+    // On récupère l'élément du tableau qui correspond à la tâche actuelle
+    let element = todoArray.filter((todoElt)=> todoElt.id === parseInt(todoId))[0];
+
+    let currentTodo = document.getElementById(`${element.id}`);
+    let todoDescription = currentTodo.childNodes[1].innerHTML;
+
+    element.description = todoDescription;
+    console.log(todoArray)
+
+}
+
+// Suppression de la tâche
+function deleteTodo(todoId){
+        
+        // On récupère l'élément du tableau qui correspond à la tâche actuelle
+        let element = todoArray.filter((todoElt)=> todoElt.id === parseInt(todoId))[0];
+        
+        todoArray.splice(todoArray.indexOf(element), 1);
+
+        // Suppression de la tâche du DOM
+        let currentTodo = document.getElementById(`${element.id}`);
+        todoList.removeChild(currentTodo);
+
+    }
 
 // Affichage de la tâche dans le DOM
 function displayTodo(){
@@ -91,6 +120,70 @@ function displayTodo(){
 
 }
 
+
+// Affichage de toutes les tâches
+function showAllTasks(){
+
+    let allLiItems = document.querySelectorAll("li.todo");
+
+    allLiItems.forEach((element) => {
+
+            element.style.display = "flex";
+
+    })
+
+}
+
+// Affichage des tâches terminées
+function showCheckedTasks(){
+
+    let allLiItems = document.querySelectorAll("li.todo");
+
+    allLiItems.forEach((element) => {
+
+        if(getComputedStyle(element.childNodes[1]).textDecorationLine === "none"){
+
+            element.style.display = "none";
+
+        } else{
+
+            element.style.display = "flex";
+
+        }
+    })
+
+}
+
+// Affichage des tâches non terminées
+function showUncheckedTasks(){
+
+    let allLiItems = document.querySelectorAll("li.todo");
+
+    allLiItems.forEach((element) => {
+        
+        if(getComputedStyle(element.childNodes[1]).textDecorationLine === "line-through"){
+
+            element.style.display = "none";
+
+        } else{
+
+            element.style.display = "flex";
+
+        }
+    })
+
+}
+
+// Affichage du nombre de tâches
+function showTasksNumber(){
+
+    let itemNumber = document.querySelectorAll("li.todo").length;
+    document.getElementById("item-number").innerHTML= ` ${itemNumber} tâches`;
+
+}
+
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
     
     let input = document.getElementById("todo");
@@ -101,6 +194,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let todoCount = 0;
     
     displayTodo();
+    showTasksNumber();
 
     document.querySelector("form").addEventListener("submit", (event)=>{
 
@@ -108,6 +202,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     })
 
+    // Création de la tâche au tape de la touche entrée
     document.addEventListener("keydown", (event)=>{
 
         if(event.code === "Enter"){
@@ -126,6 +221,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 input.value = "";
 
                 displayTodo();
+                showTasksNumber();
                 
             } else{
                 
@@ -138,60 +234,65 @@ document.addEventListener("DOMContentLoaded", ()=>{
         
     })
 
+    // Validation d'une tâche
     todos.addEventListener("click",(event)=>{
-
+        
+        let targetParentId = event.target.parentElement.id;
+        
         if(event.target.classList.contains("checkbtn")){
-
-            let targetParentId = event.target.parentElement.id;
-            console.log(typeof targetParentId)
             
             checkTodo(targetParentId);
+
+        } else if(event.target.classList.contains("deletebtn")){
+
+            deleteTodo(targetParentId);
+            showTasksNumber();
+
+            if(todoArray.length === 0){
+                displayTodo();
+            }
+
         }
+        
+        
+    })
 
-        if(event.target.classList.contains("deletebtn")){
+    // Modification de la description
+    todos.addEventListener("input",(event)=>{
+        
+        let targetParentId = event.target.parentElement.id;
 
-            let targetParent = event.target.parentElement;
-            let parentId = targetParent.id;
-            let relativeTodoId = parseInt(parentId.slice(5, parentId.length));
-            console.log(relativeTodoId)
-            let element = todoArray[relativeTodoId - 1];
-            console.log(element)
-            element.deleteTodo();
-            console.log(todoArray)
+        if(event.target.classList.contains("todo-description")){
+
+            updateTodo(targetParentId);
+
         }
 
     })
 
-    // todoArray.forEach((element) => {
 
-    //     // Bouton de validation
-    //     let checkCount = 0;
-    //     todoCheckBtn = document.querySelector(`#todo-${element.todoId} > .checkbtn`);
-                
-    //     // Au click du bouton de validation
-    //     todoCheckBtn.addEventListener("click", ()=>{
-            
-    //         console.log(todoCheckBtn)
-    //         console.log("Checké !")
-    //         checkCount++;
-    //         element.checkTodo(checkCount);
-    
-    //     })
-    
-    //     // Bouton de suppression
-    //     todoDeleteBtn = document.querySelector(`#todo-${element.todoId} > .deletebtn`);
+    let completedFilterBtn = document.getElementById("completed");
+    completedFilterBtn.addEventListener("click", ()=>{
 
+        console.log("éléments cochés")
+        showCheckedTasks();
 
-    //     // Au click du bouton de validation
+    })
 
-    //     todoDeleteBtn.addEventListener("click", ()=>{
-            
-    //         console.log("Todo supprimé !")
-    //         element.deleteTodo();
-        
-    //     })
+    let activeFilterBtn = document.getElementById("active");
+    activeFilterBtn.addEventListener("click", ()=>{
 
+        console.log("éléments décochés")
+        showUncheckedTasks();
 
-    // })
+    })
+
+    let allFilterBtn = document.getElementById("all");
+    allFilterBtn.addEventListener("click", ()=>{
+
+        console.log("tous les éléments")
+        showAllTasks();
+
+    })
 
 })

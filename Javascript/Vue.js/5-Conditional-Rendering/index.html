@@ -1,22 +1,59 @@
-<script type="module">
-import { createApp } from 'vue'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script type="module">
+    import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js'
+    
+    createApp({
+      data() {
+        return {
+          awesome: true,
+          students: [
+            {id:1, fname:"Tony", lname:"Parker"},
+            {id:1, fname:"James", lname:"LeBron"},
+            {id:1, fname:"Kyrie", lname:"Irving"},
+            {id:1, fname:"Kevin", lname:"Durant"},
+          ]
+        }
+      },
+      methods: {
+        toggle() {
+          this.awesome = !this.awesome;
+        }
+      }
+    }).mount('#app')
+    </script>
+    
+    <div id="app">
+      <button @click="toggle">toggle</button>
+      <h1 v-if="awesome">Vue is awesome!</h1>
+      <h1 v-else>Oh no 😢</h1>
 
-createApp({
-  data() {
-    return {
-      awesome: true
-    }
-  },
-  methods: {
-    toggle() {
-      // ...
-    }
-  }
-}).mount('#app')
-</script>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prénoms</th>
+          </tr>
+        </thead>
 
-<div id="app">
-  <button @click="toggle">toggle</button>
-  <h1>Vue is awesome!</h1>
-  <h1>Oh no 😢</h1>
-</div>
+        <tbody>
+          <tr v-for="(student, index) in students" :key="index">
+            <td>{{student.id}}</td>
+            <td>{{student.lname}}</td>
+            <td>{{student.fname}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+</body>
+</html>

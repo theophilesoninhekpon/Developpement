@@ -11,9 +11,17 @@
     
     <div id="app">
       <h1>{{msg}}</h1>
-      <img src="" alt="">
-      <p></p>
-      <p></p>
+      <form action="" @submit.prevent="verifyAddress">
+        <label for="firstname">Votre nom: </label>
+        <input type="text" id="firstname" v-model="user.firsname">
+        <label for="email">Votre email: </label>
+        <input type="email" id="email" v-model="user.address.email">
+        <label for="tel">Votre téléphone: </label>
+        <input type="tel" id="email" v-model="user.address.tel">
+        <button>Soumettre</button>
+      </form>
+      <p>{{verifyAddress}}</p>
+      <button @click="increment">Count {{counter}}</button>
     </div>
 
   <script type="module">
@@ -27,11 +35,40 @@
 
         return({
 
-          msg: "Rendez moi dynamique !"
+          msg: "Rendez moi dynamique !",
+          user: {
+            firstname: "Jeremie",
+            address: {
+              tel: "+22965987845",
+              email: "jeremie@gmail.com"
+            }
+          },
+          result: '',
+          counter: 0
 
         })
 
-      }
+      },
+
+      methods: {
+        
+        increment(){
+          this.counter++;
+        }
+        
+      },
+     
+      computed: {
+
+        verifyAddress(){
+
+          return this.result = (this.user.address.email.endsWith("@gmail.com")) ? `L'utilisateur ${this.user.firstname} a renseigné une addresse gmail` : ` L'utilisateur ${this.user.firstname} n'a pas une addresse gmail`;
+
+        },
+        
+      },
+
+
     }).mount('#app');
     </script>
     

@@ -8,7 +8,7 @@
 
 body{
     margin: 0;
-    font-family: Verdana, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Arial;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,9 +118,13 @@ input::placeholder{
     border: 1px solid rgb(219, 219, 219);
     border-radius: 50%;
     width: 20px;
-    aspect-ratio: 1;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
+
 
 .todo-description{
 
@@ -143,4 +147,10 @@ input::placeholder{
 
 .validate{
     color: rgb(108, 175, 8);
+}
+
+.item-number{
+
+    color: rgb(170, 170, 170);
+    
 }
