@@ -11,11 +11,18 @@ let todoDeleteBtn;
 let todoArray = [];
 let defaultStatement;
 let todoList;
-
+let storageKey = 0;
+let existingTodos = [];
 
 //Ajout d'une tâche
 function addTodo(todo){
-
+    
+    localStorage.setItem(`todo${todoCount}`, JSON.stringify(todo));
+    for(todo in localStorage){
+        if(todo.startsWith("todo")){
+            console.log(localStorage[todo])
+        }
+    }
     todoArray.push(todo);
     
 }
@@ -77,40 +84,41 @@ function deleteTodo(todoId){
 
     }
 
+
 // Affichage de la tâche dans le DOM
 function displayTodo(){
     
     if(todoArray.length > 0){
         
-            todoList = document.getElementById("todo-list");
-            defaultStatement.style.display = "none";
+        todoList = document.getElementById("todo-list");
+        defaultStatement.style.display = "none";
 
-            let element = todoArray[todoArray.length - 1];
-            
-             // élément de liste
-            let todoListItem = document.createElement("li");
-            todoListItem.classList.add("todo");
-            todoListItem.setAttribute("id", `${element.id}`);
+        let element = todoArray[todoArray.length - 1];
+       
+         // élément de liste
+        let todoListItem = document.createElement("li");
+        todoListItem.classList.add("todo");
+        todoListItem.setAttribute("id", `${element.id}`);
 
-            // bouton de validation
-            let checkBtn = document.createElement("span");
-            checkBtn.classList.add("checkbtn");
-            
-            // description de la tâche
-            let todoDescription = document.createElement("span");
-            todoDescription.classList.add("todo-description");
-            todoDescription.setAttribute("contenteditable", "true");
-            todoDescription.innerHTML = element.description;
+        // bouton de validation
+        let checkBtn = document.createElement("span");
+        checkBtn.classList.add("checkbtn");
+        
+        // description de la tâche
+        let todoDescription = document.createElement("span");
+        todoDescription.classList.add("todo-description");
+        todoDescription.setAttribute("contenteditable", "true");
+        todoDescription.innerHTML = element.description;
 
-            // bouton de suppression de la tâche
-            let deleteBtn = document.createElement("span");
-            deleteBtn.classList.add("deletebtn", "fas", "fa-times");
+        // bouton de suppression de la tâche
+        let deleteBtn = document.createElement("span");
+        deleteBtn.classList.add("deletebtn", "fas", "fa-times");
 
-            // Ajout des noeuds dans le Dom
-            todoListItem.appendChild(checkBtn);
-            todoListItem.appendChild(todoDescription);
-            todoListItem.appendChild(deleteBtn);
-            todoList.append(todoListItem);
+        // Ajout des noeuds dans le Dom
+        todoListItem.appendChild(checkBtn);
+        todoListItem.appendChild(todoDescription);
+        todoListItem.appendChild(deleteBtn);
+        todoList.append(todoListItem);
 
     } else{
 
@@ -150,6 +158,7 @@ function showCheckedTasks(){
             element.style.display = "flex";
 
         }
+        
     })
 
 }
@@ -192,7 +201,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     defaultStatement = document.querySelector("#todos > span");
 
     let todoCount = 0;
-    
+   
     displayTodo();
     showTasksNumber();
 
@@ -214,9 +223,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 
                 let todo = {};
                 todo.id = todoCount;
-                todo.description = todoDescription;
+                todo.description = todoDescription
                 todo.isChecked = false;
                 todo.checkCount = 0;
+                
                 addTodo(todo);
                 input.value = "";
 

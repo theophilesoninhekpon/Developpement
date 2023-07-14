@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script type="module">
+    import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js'
+    
+    createApp({
+      // ...
+      data(){
+
+        return {
+
+          counter : 0,
+
+        }
+      },
+
+      mounted(){
+
+        this.start();
+
+      },
+
+      methods: {
+
+        start(){
+
+          const paragraph = this.$refs.pElementRef;
+          paragraph.innerHTML = "Salut";
+
+        }
+
+      },
+
+      watch:{
+
+        counter(currentValue, oldValue){
+          console.log(`counter a changé. Valeur précédent: ${oldValue}. Nouvelle valeur ${currentValue}`);
+        }
+      }
+    }).mount('#app')
+    </script>
+    
+    <div v-cloak id="app" >
+      <p ref="pElementRef">hello</p>
+      <button @click="counter++">Count {{counter}}</button>
+    </div>
+    
+</body>
+</html>

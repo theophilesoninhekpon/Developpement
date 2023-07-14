@@ -1,0 +1,110 @@
+body{
+
+    font-family: Poppins;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+
+}
+
+.completed{
+
+    font-size: 4rem;
+    color: rgb(15, 164, 15)
+    
+}
+
+.uncompleted{
+    
+    font-size: 4rem;
+    color: rgb(187, 13, 13)
+
+}
+
+.todo-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+    justify-content: center;
+    height: 70vh;
+    color:rgb(12, 56, 117)
+}
+
+.todo-id{
+    
+    font-size: 5rem;
+
+}
+
+.todo{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 5rem;
+    box-shadow: 0px 0px 50px 2px rgba(0, 0, 0, 0.129) inset;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 50px;
+    text-align: center;
+
+}
+
+.btn{
+
+    position: fixed;
+    bottom: 220px;
+    font-family: Poppins;
+    background-color: rgb(174, 2, 2);
+    border: 1px solid  rgb(174, 2, 2);
+    border-radius: 70px;
+    padding: 0.5rem 1rem;
+    border: 2px solid rgb(174, 2, 2);
+    color: white;
+    
+}
+
+.btn:hover{
+
+    background-color: white;
+    border-radius: 70px;
+    padding: 0.5rem 1rem;
+    color: rgb(174, 2, 2);
+    cursor: pointer;
+
+}
+
+.table{
+
+    /* border: 1px solid lightcoral; */
+    border-radius: 50px;
+    text-align: center;
+
+}
+
+tr:nth-child(even){
+
+    background-color:  rgb(255, 206, 206);
+
+}
+
+thead tr{
+
+    background-color: lightcoral;
+
+}
+
+th, td{
+    border: 1px solid lightcoral;
+    padding: 1rem;
+    border-radius: 50px;
+    box-shadow: 0px 0px 20px 4px rgba(240, 128, 128, 0.481) inset;
+}
+
+.table td.deletebtn{
+
+    background-color:  rgb(177, 51, 51);
+    cursor: pointer;
+}

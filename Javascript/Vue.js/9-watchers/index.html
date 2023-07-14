@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/dd3ee9631d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+<body>
+  
+  <script type="module">
+    import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js'
+    
+    createApp({
+      data() {
+        return {
+          todoId: 1,
+          todoData: null,
+          users: {},
+
+        }
+      },
+      methods: {
+        async fetchData() {
+
+          this.todoData = null
+          const res = await fetch(`./todos.json`)
+          const userData = await fetch(`./users.json`)
+
+          this.todoData = (await res.json())[this.todoId - 1];
+          this.users = (await userData.json());
+
+        },
+
+        deleteUser(id){
+          
+          return this.users = this.users.filter((element) => id !== element.id);
+        },
+
+      },
+
+      mounted() {
+        this.fetchData()
+      },
+
+      watch: {
+        todoId(){
+          // setTimeout((()=> this.fetchData()), 2000);
+          this.fetchData();
+        },
+      }
+    }).mount('#app');
+    </script>
+    
+    <div v-cloak id="app">
+      <!-- <div class="todo-wrapper" v-if="todoData">
+        <div class="todo">
+          <div class="todo-id"> {{ todoData.id }}</div>
+          <h2 class="todo-title"> {{ todoData.title }}</h2>
+          <span v-if="todoData.completed === true" :class="{completed: todoData.completed, fas: todoData.completed, 'fa-check-circle': todoData.completed}"> </span> 
+          <span v-else :class="{uncompleted: !todoData.completed, fas: !todoData.completed, 'fa-ellipsis-h': !todoData.completed}"> </span>
+        </div>
+        <button class="btn" @click="todoId++">Tâche suivante</button>
+      </div> -->
+      <!-- <div v-else :class="{spinner: todoData}"></div> -->
+    
+        <table class="table">
+          <thead>
+            <th>Id</th>
+            <th>Nom et prénoms</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+          </thead>
+          <tbody>
+            <tr v-for="(user, index) in users">
+              <td>{{index + 1}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.username}}</td>
+              <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+              <td><a href="tel:{{user.phone}}">{{user.phone}}</a></td>
+              <td @click="deleteUser(user.id)" class="deletebtn"> <span class="fas fa-times"></span></button></td>
+            </tr>
+          </tbody>
+        </table>
+     
+    </div>
+    
+</body>
+</html>

@@ -1,62 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
+<script type="module">
+import { createApp } from 'vue'
 
-  <script type="module">
-  import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js'
+// give each todo a unique id
+let id = 0
 
-  // give each todo a unique id
-  let id = 0
-
-  createApp({
-    data() {
-      return {
-        newTodo: '',
-        todos: [
-          { id: id++, text: 'Learn HTML' },
-          { id: id++, text: 'Learn JavaScript' },
-          { id: id++, text: 'Learn Vue' }
-        ]
-      }
-    },
-    methods: {
-      addTodo() {
-        // ...
-        this.todos.push({
-          id: id++,
-          text: this.newTodo
-        })
-        console.log(this.todos[this.todos.length - 1])
-      },
-      removeTodo(index) {
-        // ...
-       
-          this.todos.splice(index, 1)
-      
-      }
+createApp({
+  data() {
+    return {
+      newTodo: '',
+      todos: [
+        { id: id++, text: 'Learn HTML' },
+        { id: id++, text: 'Learn JavaScript' },
+        { id: id++, text: 'Learn Vue' }
+      ]
     }
-  }).mount('#app')
-  </script>
+  },
+  methods: {
+    addTodo() {
+      // ...
+      this.newTodo = ''
+    },
+    removeTodo(todo) {
+      // ...
+    }
+  }
+}).mount('#app')
+</script>
 
-  <div id="app">
-    <form @submit.prevent="addTodo">
-      <input v-model="newTodo">
-      <button>Add Todo</button>    
-    </form>
-    <ul>
-      <li v-for="(todo, index) in todos" :key="index">
-        {{ todo.text }}
-        <button @click="removeTodo(index)">X</button>
-      </li>
-    </ul>
-  </div>
-
-</body>
-</html>
+<div id="app">
+  <form @submit.prevent="addTodo">
+    <input v-model="newTodo">
+    <button>Add Todo</button>    
+  </form>
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">
+      {{ todo.text }}
+      <button @click="removeTodo(todo)">X</button>
+    </li>
+  </ul>
+</div>
