@@ -57,7 +57,7 @@ function checkTodo(todoId){
         }
         
         let todo = {};
-        todo.id = todoId;
+        todo.id = parseInt(todoId);
         todo.description = element.description;
         todo.isChecked = element.isChecked;
         todo.checkCount = element.checkCount;
@@ -99,10 +99,12 @@ function deleteTodo(todoId){
         // On récupère l'élément du tableau qui correspond à la tâche actuelle
         console.log(todoId)
         let element = todoArray.filter((todoElt)=> todoElt.id === parseInt(todoId))[0];
-        console(todoArray.indexOf(element))
+        // let element = todoArray.filter((todoElt)=> todoElt.id === parseInt(todoId));
+        console.log(todoArray.indexOf(element))
+        // console.log(element)
         todoArray.splice(todoArray.indexOf(element), 1);
         localStorage.removeItem(`todo${element.id}`);
-
+        console.log(localStorage);
         // Suppression de la tâche du DOM
         let currentTodo = document.getElementById(`${element.id}`);
         todoList.removeChild(currentTodo);
@@ -115,11 +117,16 @@ function deleteTodo(todoId){
 function displayExistedTodos(){
 
     for (let property in localStorage){
+
         if(property.startsWith("todo")){
             existedTodos.push(JSON.parse(localStorage[property]));
             todoArray.push(JSON.parse(localStorage[property]));
         }
+        
     }  
+
+    let sortedArray = existedTodos.sort((firstEl, secondEl)=> firstEl.id - secondEl.id )
+    console.log(sortedArray);
     
     if(existedTodos.length > 0){
 
@@ -329,7 +336,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             showTasksNumber();
 
             if(todoArray.length === 0){
-                displayTodo();
+                existedTodos = [];
+                displayExistedTodos();
             }
 
         }
