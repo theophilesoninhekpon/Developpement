@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
     <!-- 
         Types de variables
 
@@ -23,14 +25,60 @@
 
      -->
 
-     <!-- LES CLASSES
+    <!-- LES CLASSES
     
     Les modificateurs
         public : (défaut) permet l'accès à la propriété de partout
         private: ne permet l'accès que dans la classe
         protected: permet l'accès dans la classe et dans les enfants de la classe
-        
+   
+    
 -->
-     
+
+    <!-- LES CLASSES ABSTRAITES 
+    
+        Une classe abstraite est un concept de la POO. C'est une classe qui ne peut être instancié directement, cad qu'on ne peut pas créer d'objets directement à partir de cette classe. 
+        Au lieu de cela, elle est conçue pour être utilisée comme une classe à partir de laquelle les autres peuvent hériter.
+
+        ex: abstract NomDeLaClasseAbstraite{
+
+        }
+
+        1. Impossible à instancier
+        2. Permet de déclarer des méthodes abstraites: une classe abstraite peut déclarer des méthodes abstraites, c'est-à-dire des méthodes qui n'ont pas de corps
+        (pas de code d'implémentation). Ces méthodes sont uniquement déclarées avec leur signature (nom et paramètres). La responsabilité d'implémenter ces méthodes incombe aux classes qui
+        héritent de la classe abstraite.
+        3. Héritage: les classes qui héritent d'une classe abstraite (appelées classes dérivées, sous-classes, enfant) doivent fournir une implémentation pour toutes les méthodes 
+        abstraites de la classe abstraite.
+
+
+        LES INTERFACES
+        Lorsqu'une classe implémente une interface, elle doit fournir une implémentation pour toutes les propriétés et méthodes déclarées dans l'interface
+
+        ex: 
+
+        interface MonInterface {
+            propriété: type;
+            méthode(): returnType;
+        }
+
+        A l'intérieur de l'interface, on met que des signatures et non des implémentations de méthodes ou fonctions
+        class MaClasse implements MonInterface {
+            propriété: type;
+            constructor(p: tpe) {
+                this -> propriété = p;
+            }
+
+            méthode(){
+                return returnValue;
+            }
+        }
+    --> 
+
+
+
+
+
 </body>
+
 </html>

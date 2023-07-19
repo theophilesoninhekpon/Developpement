@@ -17,9 +17,16 @@ abstract class Music{
 
 class Guitar extends Music{
     
-    _instrument:string = "Guitare";
+    constructor(){
+        super();
+        this._instrument = "Guitare";
+    }
    
-    makeSound():void
+    makeSound(): string {
+
+        return "something";
+
+    }
 }
 
 let guitar = new Guitar();

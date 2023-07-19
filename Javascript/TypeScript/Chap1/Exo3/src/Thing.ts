@@ -5,11 +5,8 @@ interface Duck {
 
 class Thing implements Duck{
     
-    name;
-    constructor(name: string){
-        this.name = name;
-    }
-
+    name: string;
+  
     swim(): string{
         return "Nage comme un canard";
     }

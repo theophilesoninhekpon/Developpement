@@ -156,3 +156,59 @@ addNumbers<boolean>(true);
 addNumbers<number>(12);
 
 
+
+
+abstract class Forme {
+    show(){
+
+        console.log("Je suis une forme géométrique");
+        
+    }
+
+    abstract calculateArea(): number;
+}
+
+class Rectangle extends Forme {
+
+    constructor(
+        public longueur: number,
+        public largeur: number,
+    ){
+        super()
+    }
+
+    calculateArea(): number {
+        return this.longueur * this.largeur;
+    }
+
+}
+
+class Circle extends Forme{
+
+    constructor(
+        public radius: number
+    ){
+        super()
+    }
+
+    calculateArea(): number {
+        return (this.radius**2) * Math.PI;
+    }
+}
+
+class Triangle extends Forme{
+
+    constructor(
+        public base: number,
+        public height: number
+    ){
+        super()
+    }
+
+    calculateArea(): number {
+        return 0.5 * this.base * this.height;
+    }
+}
+
+let circle = new Circle(4);
+console.log(circle.calculateArea())
