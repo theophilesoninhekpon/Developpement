@@ -75,6 +75,31 @@
         }
     --> 
 
+    <!-- LES DECORATEURS 
+    
+        chaque propriété d'un objet est composé d'un descripteur:
+            -inscriptible, énumérable, configurable
+
+        - writable: il spécifie si la propriété peut être modifié après sa création. Si writable est false, alors la 
+        propriété est considérée comme en lecture seule
+        - enumerable: il indique si la propriété sera listée lors du parcours de l'objet à l'aide d'une boucle "for...in" ou "Object.keys"
+        - configurable: il spécifie si la propriété peut être modifiée ou supprimée ultérieurement, et si ses descripteurs peuvent être modifiés
+
+        Object.defineProperty(target | object: object, propertyName: string, descriptor: object{
+            writable: true,
+            enumerable: true,
+            configurable: true
+        })
+
+        NB: Le décorateur ne s'applique que sur une classe ou dans une classe
+
+        1.Classe: s'applique au constructeur de la classe
+        ex: 
+        2.propriété
+        3.méthode
+        4.accesseur (getter & setter)
+        5.paramètres d'une méthode
+    -->
 
 
 

@@ -212,3 +212,84 @@ class Triangle extends Forme{
 
 let circle = new Circle(4);
 console.log(circle.calculateArea())
+
+
+// DECORATEURS
+
+
+
+let obj = {
+    name: "Toni",
+    age: 23
+}
+
+// // console.log(obj.age)
+// Object.defineProperty(obj, "age", {
+//     // writable: false,
+//     // enumerable: false,
+//     configurable: false
+// });
+// Object.defineProperty(obj, "age", {
+//     // writable: false,
+//     // enumerable: false,
+//     configurable: true
+// });
+
+
+for (const key in u){
+    console.log(key);
+}
+// obj.age = 30;
+// console.log(obj.age)
+
+function decorer(target: Subscriber, key: string, descriptor: PropertyDescriptor){
+
+    console.log(descriptor.value);
+    
+}
+
+class Subscriber{
+    constructor(
+        private name: string
+    ){}
+    
+    @decorer
+    greet(){
+        return this.name;
+    }
+}
+
+let subscriber = new Subscriber("Tony");
+
+subscriber.greet()
+
+
+
+function logClass(target : any){
+    // fait référence à la classe qui est décorée
+    console.log(`Classe ${target} a été décorée`)
+}
+
+@logClass
+class MaClasse{
+    constructor() {
+        console.log("Instance de MaClasse créée !")
+    }
+}
+
+// Decorateur de classe
+@sealed
+class BugReport {
+    type = "Rapport";
+    title : string;
+    constructor(t: string){
+        this.title = t;
+    }
+}
+
+function sealed(constructor: Function){
+    Object.seal(constructor);
+    Object.seal(constructor.prototype)
+}
+
+const bug = new BugReport("Pas d'accès à Internet")
