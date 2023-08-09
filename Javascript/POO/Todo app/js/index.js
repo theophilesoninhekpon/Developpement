@@ -274,6 +274,7 @@ function showTasksNumber(){
 
 document.addEventListener("DOMContentLoaded", ()=>{
     
+    document.getElementById("container").classList.add("animation")
     let input = document.getElementById("todo");
     
     todos = document.getElementById("todos");
@@ -318,6 +319,33 @@ document.addEventListener("DOMContentLoaded", ()=>{
         
         }
         
+        
+    })
+
+    document.getElementById("addbtn").addEventListener("click",()=>{
+
+        todoCount = ++existedTodos.length;
+        let todoDescription = input.value; 
+
+        if(typeof todoDescription === "string"){
+            
+            let todo = {};
+            todo.id = todoCount;
+            todo.description = todoDescription
+            todo.isChecked = false;
+            todo.checkCount = 0;
+            
+            addTodo(todo);
+            input.value = "";
+
+            displayTodo();
+            showTasksNumber();
+            
+        } else{
+            
+            alert("Veuillez entrer une chaîne de caractères valide");
+            
+        }
         
     })
 

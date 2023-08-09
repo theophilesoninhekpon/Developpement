@@ -8,11 +8,11 @@
 
 body{
     margin: 0;
-    font-family: Arial;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(238, 238, 238);
+    font-family: Manrope;
 }
 
 .container{
@@ -31,6 +31,16 @@ body{
 h1{
     font-size: 50px;
     color: rgb(217, 58, 58);
+    font-family: 'Lexend Deca';
+}
+
+button.addbtn{
+    background-color: rgb(7, 185, 7);
+    border: 2px solid rgb(7, 185, 7);
+}
+
+.icon{
+    margin-right: 1rem;
 }
 
 .default{
@@ -51,14 +61,46 @@ h1{
 
 }
 
+
+
 .todo-input{
     
+    position: relative;
     display: flex;
     align-items: center;
     padding: 0.2rem 0.8rem;
     background-color: rgb(217, 58, 58);
     border-radius: 5rem;
+    font-family: Manrope;
+    width: 86%;
+    z-index: 1;
 
+}
+
+.form{
+    position: relative;
+}
+.form button{
+    top: 0;
+    right:0;
+    position: absolute;
+    z-index: 0;
+    width: 20%;
+    padding: 0.75rem 1.5rem;
+    text-align: right;
+    background-color: rgb(255, 191, 0);
+    border: 2px solid rgb(255, 191, 0);
+    color: rgba(0, 0, 0, 0.513);
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: Manrope;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+}
+
+.form button:hover{
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.5);
 }
 
 ul{
@@ -90,12 +132,14 @@ input{
     color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0);
     outline: none;
+    font-family: Manrope;
     
 }
 
 input::placeholder{
     color: rgba(255, 255, 255, 0.43);
     font-size: 1.3rem;
+     font-family: Manrope;
 }
 
 .select-icon{
@@ -111,6 +155,7 @@ input::placeholder{
 
 .deletebtn{
     margin-left: auto;
+    cursor: pointer;
 }
 
 .checkbtn{
@@ -122,6 +167,7 @@ input::placeholder{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
 }
 
@@ -145,6 +191,52 @@ input::placeholder{
 
 }
 
+.addbtn, .toolbar-btn button{
+    padding: 0.3rem 1rem;
+    border: 0;
+    border-radius: 50px;
+    color: white;
+    cursor:pointer;
+    width: 120px;
+    font-family: Manrope;
+    margin-left: 0.2rem;
+    font-size: 0.9rem;
+    transition: all 0.75s;
+    text-align: center;
+}
+
+button.bg-green{
+    background-color: rgb(7, 185, 7);
+    border: 2px solid rgb(7, 185, 7);
+}
+button.bg-orange{
+    background-color: rgb(255, 191, 0);
+    border: 2px solid rgb(255, 191, 0);
+}
+button.bg-red{
+    background-color: rgb(217, 58, 58);
+    border: 2px solid rgb(217, 58, 58);
+}
+
+
+button.bg-green:hover{
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.7);
+}
+button.bg-orange:hover{
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.7);
+}
+button.bg-red:hover{
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.red{
+    color: rgb(217, 58, 58);
+}
+
+
 .validate{
 
     color: rgb(108, 175, 8);
@@ -155,4 +247,16 @@ input::placeholder{
 
     color: rgb(170, 170, 170);
     
+}
+
+.animation{
+    animation: display 2s;
+}
+@keyframes display {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
