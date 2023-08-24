@@ -38,7 +38,7 @@ export class AlbumService {
    * @returns Retourne l'album correspondant; undefined si aucun identifiant ne correspond
    */
   getAlbum(id: string): Observable<Album> | undefined {
-    return this.http.get<Album>(this._albumsUrl + '/' + id)
+    return this.http.get<Album>(this._albumsUrl + '/' + id + '/.json')
       .pipe(
         map((album: Album) => album)
       );
@@ -51,7 +51,7 @@ export class AlbumService {
    * @returns La référence sera retourné si elle existe; undefined si l'id n'existe pas dans la liste.
    */
   getAlbumList(id: string): Observable<List> {
-    return this.http.get<List>(this._albumListUrl + '/' + id);
+    return this.http.get<List>(this._albumListUrl + '/' + id + '/.json');
   }
 
   /**
