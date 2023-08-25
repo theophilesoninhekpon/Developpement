@@ -24,6 +24,18 @@
     BETWEEN "2023-08-01 00:00:00" 
     AND "2023-08-31 23:59:59"
 
+    SELECT *
+    FROM users
+    LIKE '%-08-%'
+
+    SELECT *
+    FROM users
+    WHERE MONTH(birthdate) = MONTH(CURDATE())
+
+    SELECT * 
+    FROM users
+    WHERE MONTH(birthdate) = MONTH(NOW())
+
     -- Le nombre total d'utilisateurs ;
 
     SELECT COUNT(id) 
@@ -36,14 +48,21 @@
     INNER JOIN addresses 
     ON addresses.user_id = users.id;
 
+    SELECT users.*, addresses.city
+    FROM users, addresses
+    WHERE addresses.id = users.addresses_id
+
     -- La liste de tous les utilisateurs vivant à une adresse sans numéro ;
 
-  
     SELECT users.*
     FROM users
     INNER JOIN addresses
     ON addresses.user_id = users.id
     WHERE addresses.number IS NULL;
+
+    SELECT users.*
+    FROM users, addresses
+    WHERE addresses.user_id = users.id AND addresses.number IS NULL
 
     -- La liste de tous les produits dont le prix est supérieur à 1 000 € ;
 
@@ -91,3 +110,50 @@
     ORDER BY users.registration_date LIMIT 1)
 
 
+    -- Création de la base de données app_music
+    create database 
+    app_music
+    CHARACTER set utf8mb4
+    collate utf8mb4_unicode_ci; -- encodage | ci: case insensitive
+
+    USE app_music; -- Cette base de données sera utilisée pour toutes les requêtes
+
+    CREATE TABLE -- le nom d'une table est suivi de s 
+    albums (
+            id INT(11) PRIMARY KEY AUTO_INCREMENT,
+            ref CHAR(10) NOT NULL,
+            name VARCHAR(50) NOT NULL,
+            title VARCHAR(50) NOT NULL,
+            description TEXT,  
+            likes ENUM('Coll', 'Much', 'Great')
+        
+    );  -- Définition des champs de cette table
+
+    -- Insertion de données
+
+    INSERT INTO `albums` (`ref`, `name`, `title`, `description`, `likes`) 
+    VALUES ('XY-123','Elton John','Sacrifice',"L'album chaud du moment",'Cool');
+
+    INSERT INTO `albums` (`id`, `ref`, `name`, `title`, `description`, `likes`) 
+    VALUES (NULL, 'XY-123','Elton John','Sacrifice',"L'album chaud du moment",'Cool');
+
+    CREATE TABLE test (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        a INT(11) NOT NULL,
+        b INT(11) UNSIGNED ZEROFILL NOT NULL,
+        c INT(5) DEFAULT NULL,
+        d INT(5) UNSIGNED ZEROFILL NOT NULL,
+        e INT(15) DEFAULT NULL,
+        PRIMARY KEY (`id`)
+    );
+
+    INSERT INTO `test`(`id`, `a`, `b`, `c`, `d`, `e`) 
+    VALUES (NULL,1,1,1,1,1)
+
+    CREATE TABLE albumList (
+        id INT AUTO_INCREMENT,
+        album_id INT,
+        list VARCHAR(100),
+        PRIMARY KEY (`id`),
+        CONSTRAINT FK_albums_albumList FOREIGN KEY(`album_id`) REFERENCES albums(`id`)
+    );
