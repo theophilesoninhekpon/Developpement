@@ -14,7 +14,7 @@
 
     SELECT *
     FROM users 
-    ORDER BY id DESC LIMIT 1;
+    ORDER BY registration_date DESC LIMIT 1;
 
     -- La liste de tous les utilisateurs fêtant leur anniversaire ce mois-ci ;
 
@@ -33,15 +33,16 @@
     
     SELECT users.*, addresses.city 
     FROM users
-    JOIN addresses 
-    ON adresses.user_id = users.id;
+    INNER JOIN addresses 
+    ON addresses.user_id = users.id;
 
     -- La liste de tous les utilisateurs vivant à une adresse sans numéro ;
 
+  
     SELECT users.*
     FROM users
-    JOIN addresses
-    ON adresses.user_id = users.id
+    INNER JOIN addresses
+    ON addresses.user_id = users.id
     WHERE addresses.number IS NULL;
 
     -- La liste de tous les produits dont le prix est supérieur à 1 000 € ;
@@ -54,16 +55,16 @@
 
     SELECT products.*, pictures.url, pictures.caption
     FROM products
-    JOIN pictures
+    INNER JOIN pictures
     ON pictures.product_id = products.id;
 
     -- La liste de tous les produits appartenant à la catégorie « Voyage » ;
 
     SELECT p.name, p.description, p.price
     FROM ((products_categories AS pc
-    JOIN products AS p
+    INNER JOIN products AS p
     ON pc.product_id = p.id)
-    JOIN categories AS c 
+    INNER JOIN categories AS c 
     ON pc.category_id = c.id)
     WHERE c.title = "Voyage"
     
@@ -71,19 +72,22 @@
 
     SELECT users.id, COUNT(orders.user_id)
     FROM users
-    JOIN orders
+    INNER JOIN orders
     ON orders.user_id = users.id
     GROUP BY users.id
     HAVING COUNT(orders.user_id) > 10;
 
     -- La liste de tous les produits achetés par le premier utilisateur inscrit.
 
-    SELECT p.name, p.description, p.price
+   SELECT p.name, p.description, p.price
     FROM ((products_orders AS po
-    JOIN products AS p
+    INNER JOIN products AS p
     ON po.product_id = p.id)
-    JOIN orders AS o 
+    INNER JOIN orders AS o 
     ON po.order_id = o.id)
-    GROUP BY o.user_id
+    WHERE o.user_id =
+    (SELECT users.id 
+    FROM users
+    ORDER BY users.registration_date LIMIT 1)
 
 
