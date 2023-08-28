@@ -44,4 +44,16 @@ function haveMatched(string $name){
    }
    return preg_match("/[A-Z]{2}-[0-9]{4}/i", $name);
 }
+
+function dd($data) {
+   echo "<pre>";
+   print_r($data);
+   echo "</pre>";
+   }
+
+   function vd($data) {
+   echo "<pre>";
+   var_dump($data);
+   echo "</pre>";
+   }
 ?>
