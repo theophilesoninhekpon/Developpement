@@ -17,11 +17,15 @@
         les vidéos, etc... , en plus de données de texte -->
         <form action="server.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
+                <!-- Empêcher le chargement de fichiers lourds -->
+                <input type="hidden" name="MAX_FILE_SIZE" value="3000000"> <!-- value: taille du fichier en octets -->
                 <label for="file" class="form-label">Importez un fichier</label>
                 <input type="file" class="form-control" name="photo_profile" id="file">
             </div>
-            <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+            <input type="submit" class="btn btn-primary" value="Submit">
         </form>
+
+        <a href="download.php?file=img-upload-64edc24f9fc71.jpg"> Télécharger l'image </a>
     </div>
 </body>
 </html>
