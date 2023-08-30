@@ -29,7 +29,20 @@ session_start();
         </form>
     </div>
     <?php else: ?>                             <!-- Si la session existe -->
-        
+    <div class="container">
+        <nav class="navbar">
+            <a href="#" class="navbar-brand">Auth0</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="" class="nav-link">Accueil</a></li>
+                <li class="nav-item"><a href="" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="" class="nav-link">Support</a></li>
+                <li class="nav-item"><a href="./controller.php" class="nav-link">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="row">
+            <h1>Bienvenur sur votre dashboard</h1>
+        </div>
+    </div>
     <?php endif; ?>
 </body>
 </html>
