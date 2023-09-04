@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Raleway">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/dd3ee9631d.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <?php if (isset($_POST['botname'])): ?>
+                
+        <?php if(!haveMatched(($_POST['botname']))) : ?>
+                
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="btn-close"><span class="fas fa-times"></span></span>
+                    <p>Le nom est invalide!</p>
+                    <p>Il doit respecter ce format <strong> XXXX-99 </strong></p>
+                    <button id="correct-btn">Corriger</button>
+                </div>
+            </div>
+            
+        <?php endif; ?>    
+
+    <?php endif;?>
+    
+    <div class="main-container">
+        <div class="logo">
+            <span class="fas fa-robot"></span>
+        </div>
+        <h1>Super Bot Maker </h1>
+        <?php if(!isset($_POST['botname']) || (!haveMatched($_POST['botname']))): ?> <!-- Si le formulaire n'est pas soumis, on l'affiche-->
+        <form method="post" class="form">
+            <label for="botname">Saisissez un nom pour votre robot</label>
+            <input autofocus type="text" id="botname" name="botname" placeholder="XXXX-9999">
+           <div class="radio-group">
+                <div class="radio">
+                    <input type="radio" name="bot-morality" id="diabolic" value="diabolic">
+                    <label for="diabolic">Diabolique</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="bot-morality" id="sympathic" value="sympathic">
+                    <label for="sympathic">Sympathique</label>
+                </div>
+           </div>
+            <button type="submit" id="submit">Générer le robot</button>
+        </form>
+        <?php ?>
+        <?php else: ?>  <!-- Quand le formulaire est soumis -->
+
+            <?php if(preg_match("/[A-Z]{2}-[0-9]{4}/i", $_POST['botname'])): ?>
+                <div class="bot" id="bot"> 
+                    <p>
+                        <?php
+    
+                        if(empty($_POST['botname'])){
+    
+                            $bot = generateRandomRobotName();
+    
+                            
+                        } else {
+                            
+                            $bot = $_POST['botname'];
+                            
+                        }
+    
+                        echo greet($bot); 
+    
+                        ?>
+                    </p>
+                    <p> <?= getCurrentDateTime() ?></p>
+                    <p> <?= chooseRandomNumberAndParity() ?></p>
+                    <p> <?= reverseName($bot) ?></p>
+                    <p> <?php
+                        
+                        if(empty($_POST['bot-morality'])){
+    
+                            echo robotBehaviour();
+    
+                        } else {
+                            
+                            echo robotBehaviour($_POST['bot-morality']); 
+                            
+                        }
+    
+                     ?>
+                     </p>
+                </div>
+                <a href="/" class="modify-btn">Modifier</a>
+            <?php else:
+            ?>
+            <?php endif; ?>
+
+        <?php endif;?>
+    </div>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", ()=>{
+            let appTitle = document.querySelector("h1");
+            let title = appTitle.innerHTML;
+            let titleLetters = title.split("");
+            let count = 0;
+            // appTitle.innerHTML = "";
+
+            // let interval = setInterval(()=>{   
+                
+            //     let text = document.createTextNode(titleLetters[count])
+            //     appTitle.appendChild(text);
+            //     count++;
+
+            //     if(count === titleLetters.length - 1){
+            //         clearInterval(interval)
+            //     }
+
+            // }, 50);    
+
+            document.querySelector(".btn-close").addEventListener("click",() => {
+            document.querySelector(".modal").style.display = "none";
+            })
+            document.querySelector("#correct-btn").addEventListener("click",() => {
+                document.querySelector(".modal").style.display = "none";
+            })
+
+        })
+
+
+        // document.addEventListener("DOMContentLoaded", ()=>{
+        //     let botMessage = document.querySelectorAll("#bot > p");
+        //     console.log(botMessage);
+        //     let botMessages = "";
+        //     botMessage.forEach(element => {
+        //         botMessages += element.textContent; 
+        //     });
+
+        //     console.log(botMessages)
+        //     let bot = document.getElementById("bot");
+        //     let messageLetters = botMessages.split("");
+        //     let count = 0;
+        //     bot.innerHTML = "";
+        //     let interval = setInterval(()=>{   
+        //         count++;
+
+        //         let text = document.createTextNode(messageLetters[count])
+        //         bot.appendChild(text);
+
+        //         if(count === messageLetters.length - 1){
+        //             clearInterval(interval)
+        //         }
+        //     }, 50);    
+
+        // })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <!-- L'attribut "enctype" spécifie comment les données du formulaire doivent être encodées avant d'être envoyés au serveur lorsque le formulaire est soumis.
+        Cet attribut est particulièrement important lorsque vous avez des champs de formulaire de type "file"
+        Lorsque vous définissez 'enctype="multipart/form-data"', cela signifie que les données du formulaire seront encodés sous la forme d'un contenu binaire multipart. 
+        Ce type d'encodage est utilisé pour les formulaires  contenant des champs de téléchargement de fichiers, car il permet de transférer des fichiers binaires, tels que les images,
+        les vidéos, etc... , en plus de données de texte -->
+        <form action="server.php" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <!-- Empêcher le chargement de fichiers lourds -->
+                <input type="hidden" name="MAX_FILE_SIZE" value="3000000"> <!-- value: taille du fichier en octets -->
+                <label for="file" class="form-label">Importez un fichier</label>
+                <input type="file" class="form-control" name="photo_profile" id="file">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+
+        <a href="download.php?file=img-upload-64edc24f9fc71.jpg"> Télécharger l'image </a>
+    </div>
+</body>
+</html>

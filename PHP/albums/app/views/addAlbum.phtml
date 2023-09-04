@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albums</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/dd3ee9631d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel|Inter">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5 position-relative">
+            <div class="col col-7">
+                <h1 class="text-center form-title mb-5"> Ajouter un album </h1>
+                <form action="/add" method="post" class="d-flex flex-column">
+                    <div class="mb-3 fs-3">
+                        <label for="title">Titre</label>
+                        <input type="text" class="form-control fs-3" name="title" id="title" placeholder="Titre...">
+                    </div>
+                    <div class="mb-3 fs-3">
+                        <label for="artist">Artiste</label>
+                        <input type="text" class="form-control fs-3" name="artist" id="artist" placeholder="Artiste...">
+                    </div>
+                    <button type="submit" class="btn btn-primary fs-3" name="submit">Ajouter</button>
+                </form>
+            </div>
+            <a class="back-btn btn btn-primary position-absolute top-0 start-0 fs-5" href="/"> <span class="fas fa-arrow-alt-circle-left"></span> Retour</a>
+        </div>
+    </div>
+</body>
+</html>

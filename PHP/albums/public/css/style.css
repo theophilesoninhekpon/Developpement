@@ -1,0 +1,41 @@
+body{
+    font-family: Abel;
+}
+
+.add-icon {
+    color:rgb(0, 219, 0);
+    font-size: 5rem;
+}
+
+.add-btn {
+    margin-top: 3rem;
+}
+
+.wrapper {
+    margin-bottom: 10rem;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: "Inter";
+    text-transform: uppercase;
+}
+
+.form-title {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: "Inter";
+}
+
+.back-btn {
+    width: 9%;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.226) !important; 
+}
+
+.close-btn {
+    color: white !important;
+}

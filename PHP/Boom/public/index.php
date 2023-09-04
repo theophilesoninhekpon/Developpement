@@ -5,4 +5,6 @@ define("DB", $db);
 require('../app/controllers/AlbumController.php');
 
 $controller = new AlbumController();
-$albums = $controller->home();
+$controller->home();
+
+$controller->addAlbum('World Zero', 'Eminem');

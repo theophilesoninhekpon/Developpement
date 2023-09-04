@@ -1,0 +1,258 @@
+body {
+    background-image: linear-gradient(to right, rgb(0, 112, 248), rgb(0, 166, 255));
+    color: black;
+    font-family: Raleway;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+.main-container{
+    width: 100%
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo span{
+    color: white;
+    font-size: 4rem;
+}
+
+h1{
+    font-family: "Google Sans";
+    color: white;
+    font-weight: 900;
+    font-size: 5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    color: white;
+    width: 50%;
+    margin-inline: auto
+}
+
+.form > label{
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: Raleway;
+    text-align: center;
+}
+
+.form > input{
+   
+    width: 100%;
+    border: none;
+    padding: 1.5rem 2rem;
+    border-radius: 40px;
+    font-size: 2rem;
+    margin-block: 1rem;
+}
+
+.form > input:focus{
+    outline: 0;
+}
+
+.form input[type=radio]{
+    width: 2rem;
+}
+
+input[type=text]::placeholder{
+    color: rgba(0, 0, 0, 0.141);;
+}
+.form > button {
+    background-color: rgb(255, 204, 0);
+    border: 2px solid rgb(255, 204, 0);
+    padding: 1rem 5rem;
+    /* border: 2px solid rgb(0 138 251); */
+    border: none;
+    font-family: "Google Sans";
+    color: rgba(0, 0, 0, 0.653);
+    font-size: 1.8rem;
+    border-radius: 40px;
+    font-weight: 900;
+    margin-top: 3rem;
+    cursor: pointer;
+    transition: 0.5s;
+    flex-basis: 50%;
+    margin-inline: auto;
+}
+
+.form > button:hover{
+
+    background-color: #fff;
+
+}
+
+.form input[type=radio]{
+    visibility: hidden;
+    position: absolute;
+}
+
+
+/* .form >.radio-group .radio:nth-child(1) label {
+    background-color: white;
+    color:  rgb(0, 112, 248);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border: 2px solid rgb(0, 112, 248);
+}
+
+.form  >.radio-group .radio:nth-child(2) label {
+    background-color: white;
+    color:  rgb(0, 112, 248);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border: 1px solid rgb(0, 112, 248);
+} */
+
+.form  >.radio-group label {
+    background-color: rgb(48, 46, 46);
+    color: white;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 40px;
+    font-weight: 900;
+}
+
+.form > .radio-group {
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+    margin-top: 2rem;
+}
+
+.bot{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.087);
+    border-radius: 30px;
+    width: 40%;
+    margin-inline: auto;
+    padding-block: 3rem;
+}
+
+p.error {
+    margin-top: -1rem;
+    margin-bottom: 0;
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.672);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    animation: appear 0.5s linear;
+}
+
+.modal-content{
+    padding: 8rem;
+    background-color: rgba(0, 0, 0, 0.724);
+    border-radius: 3rem;
+    text-align: center;
+    font-size: 1.3rem;
+    position: relative;
+}
+
+.btn-close{
+    font-size: 2rem;
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    cursor: pointer;
+}
+
+.modal button {
+    display: block;
+    margin-inline: auto;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(255, 204, 0);
+    color: rgba(0, 0, 0, 0.653);
+    border-radius: 40px;
+    font-weight: 900;
+    margin-top: 4rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.3rem;
+    /* border: 2px solid rgb(0 138 251); */
+    border: none;
+    font-family: "Google Sans";
+    cursor: pointer;
+}
+
+a.modify-btn{
+    display: block;
+    margin-inline: auto;
+    width: 10%;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(255, 204, 0);
+    color: rgba(0, 0, 0, 0.653);
+    font-size: 1.8rem;
+    border-radius: 40px;
+    font-weight: 900;
+    margin-top: 2rem;
+    padding: 1rem 5rem;
+    /* border: 2px solid rgb(0 138 251); */
+    border: none;
+    font-family: "Google Sans";
+}
+
+.diabolic{
+    color: white;
+    padding: 1rem 2rem;
+    animation: danger 1s infinite;
+}
+
+@keyframes danger {
+    0%{
+        background-color: rgb(183, 0, 0);
+    }
+    100%{
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes appear {
+    0%{
+        transform: scale(0.3);
+    }
+    40%{
+        transform: scale(0.7);
+    }
+    70%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes border {
+    
+}

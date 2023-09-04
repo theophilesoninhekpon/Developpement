@@ -13,7 +13,7 @@ class AlbumModel {
     // Méthode pour ajouter un nouvel album
     public static function addAlbum($title, $artist) {
         // Code pour ajouter un album à la base de données
-        $sql = 'INSERT INTO (title, artist )album VALUES(?,?)';
+        $sql = 'INSERT INTO album(title, artist) VALUES(?,?)';
         $query = DB->prepare($sql);
         $query->execute([$title, $artist]);
 
@@ -24,7 +24,8 @@ class AlbumModel {
         // Code pour récupérer un album depuis la base de données par son ID
         $sql = 'SELECT title, artist FROM album WHERE id = ?';
         $query = DB->prepare($sql);
-        return $query->execute([$id]);
+        $result = $query->execute([$id]);
+        return $result->fetch();
     }
 
     // Méthode pour mettre à jour un album
