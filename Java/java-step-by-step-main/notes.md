@@ -1,0 +1,2 @@
+TYPE PRIMITIFS
+int, float
