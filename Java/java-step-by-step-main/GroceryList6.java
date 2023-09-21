@@ -10,7 +10,6 @@ public class GroceryList6 {
         for(int i = 0; i <= groceryList.length - 1; i++) {
 
             String temp = groceryList[i];
-
             // for (int j = 0; j < groceryList.length - 1; j++) {
                 
             //     // if(j == i) {
@@ -25,14 +24,12 @@ public class GroceryList6 {
             // }
         
             if(arr.size() != 0) {
-                int s = arr.size();
-                for (int j = 0; j < s; j++) {
-                    
-                    System.out.println(i);
-                    if(!(arr.get(j).equals(temp))) {
-                     System.out.println("ici");
-                    arr.add(i, temp);
-                 }
+                int k = 0;
+                for (int j = 0; j < arr.size(); j++) {
+                    if(!arr.contains(temp)) {
+                        k++;
+                        arr.add(k, temp);
+                    } 
 
                 }
 
@@ -50,7 +47,19 @@ public class GroceryList6 {
     }
     
       public static void main(String[] args) {
-        String[] groceryList = {"apples", "banana", "Apples", "chocolate"}; 
+        String[] groceryList = 
+        {"apples",
+         "banana",
+         "apples",
+         "chocolate",
+         "mangoes",
+         "strawberry",
+         "strawberry",
+         "lemon",
+         "watermeal",
+         "chocolate",
+         "lemon",
+         "apples"}; 
         System.out.println(hasDuplicates(groceryList));
       }
 

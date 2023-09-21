@@ -3,11 +3,12 @@ public class GroceryList4 {
     public static boolean hasSpecialItem(double[] groceryPrices) {
         
         for(double price: groceryPrices) {
-            String strPrice = "" + price;
+            String strPrice = String.valueOf(price);
            
-            if(strPrice.substring(strPrice.indexOf(".") + 1).equals("99")) {
+            if(strPrice.endsWith(".99")) {
                 return true;
             }
+
         }
         
         return false;

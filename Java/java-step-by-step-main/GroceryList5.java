@@ -1,34 +1,36 @@
-
 public class GroceryList5 {
     public static boolean isAlphabetized(String[] groceryList) {
-    
-        String alphabetLetters = "abcdefghijklmnopqrstuvwxyz";
 
-        String[] initialCharacters = new String[groceryList.length-1];
+        int result;
+        boolean res = false;
+        for(int i = 0; i < groceryList.length; i++) {
 
-        for(int i = 0; i < groceryList.length - 1; i++) {
-            initialCharacters[i] = groceryList[i].split("")[0];
-        }
+            // Pour s'arrêter juste au dernier élément du tableau
+            int index = 0;
+            if(i == groceryList.length-1){
+                index = i;
+            } else {
+                index = i+1;
+            } 
 
-        for(int j = 0; j < initialCharacters.length - 1; j++) {
+            String word1 = groceryList[i];
+            String word2 = groceryList[index];
 
-            int previousLetterIndex = alphabetLetters.indexOf(initialCharacters[j]);
-            int nextLetterIndex = alphabetLetters.indexOf(initialCharacters[j+1]);
+            result = word1.compareTo(word2);
 
-            if(j < j+1) {
-                
-                if( previousLetterIndex > nextLetterIndex) {
-                    return false;
-                } 
-
+            if(result < 0) {
+                res = true;
+            } else {
+                return res;
             }
+      
         }
-
-        return true;
+        return res;
+      
     }
 
     public static void main(String[] args) {
-        String[] groceryList = {"apples", "banana", "bananas", "chocolate"};
+        String[] groceryList = {"apples","banana", "bananas"};
         System.out.println(isAlphabetized(groceryList));
     }
 }
