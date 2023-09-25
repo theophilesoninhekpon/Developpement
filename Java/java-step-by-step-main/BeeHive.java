@@ -51,6 +51,12 @@ public class BeeHive {
   public void leaveHome(String beeName) {
     // this.beeList.get(this.beeList.indexOf(new Bee(beeName))).leaveHome();
     this.beeList.get(Integer.parseInt(beeName.substring(3))).leaveHome();
+
+    // for(Bee bee: beeList) {
+    //   if(bee.getName().equals(beeName)) {
+    //     bee.leaveHome();
+    //   }
+    // }
   }
 
   public void addBees(ArrayList<String> beeNames) {

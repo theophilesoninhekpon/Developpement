@@ -1,0 +1,8 @@
+<xml version = "1.0" encoding="UTF-8">
+
+<note > 
+    <to>johndoe@gmail.com</to>
+    <from>highfive@gmail.com</from>
+    <heading>Invitation au concours d'entrée</heading>
+    <body>Bonjour Mr. Vous êtes invité à vous présenter dans nos locaux.</body>
+</note>
