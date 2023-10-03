@@ -1,4 +1,4 @@
-<div class="text-center">
+<div  {{ $attributes->merge(['class'=>'text-center w-xl text-white '.$color])}}>
     <!-- The only way to do great work is to love what you do. - Steve Jobs -->
-    <p class=" bg-red-500 w-xl text-white">Hi</p>
+    Erreur: {{$message}}
 </div>
